@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetNumber : MonoBehaviour {
+public class TargetNumber : MonoBehaviour
+{
 
     private CalculationMethod cm;
     private int[] NumberPool = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
     public int Difficulty = 4;
+    public int Target_Number;
     public List<int> Ref_Numbers;
+    public List<int> Ref_Numbers_Temp;
 
     // Draw balls from the pool, according to Difficulty
     public void DrawBall()
@@ -17,8 +20,7 @@ public class TargetNumber : MonoBehaviour {
             int x = Random.Range(0, NumberPool.Length-1);
             int Number_Drawn = NumberPool[x];
             Ref_Numbers.Add(Number_Drawn);
-            
-            Debug.Log(Ref_Numbers[i-1]);
+            Ref_Numbers_Temp.Add(Number_Drawn);
         }
     }
 
@@ -28,41 +30,39 @@ public class TargetNumber : MonoBehaviour {
         {
             int A; int B; int F;
 
-            int x = Random.Range(0, Ref_Numbers.Count - 1);
-            A = Ref_Numbers[x];
-            Ref_Numbers.RemoveAt(x);
-            Debug.Log(A);
-
-            x = Random.Range(0, Ref_Numbers.Count - 1);
-            B = Ref_Numbers[x];
-            Ref_Numbers.RemoveAt(x);
-            Debug.Log(B);
-
+            int x = Random.Range(0, Ref_Numbers_Temp.Count - 1);
+            A = Ref_Numbers_Temp[x];
+            Ref_Numbers_Temp.RemoveAt(x);
+            
+            x = Random.Range(0, Ref_Numbers_Temp.Count - 1);
+            B = Ref_Numbers_Temp[x];
+            Ref_Numbers_Temp.RemoveAt(x);
+            
             if (A != B)
             {
                 if (A % B == 0)
                 {
                     Debug.Log("**A / B");
                     F = A / B;
-                    Ref_Numbers.Add(F);
+                    Ref_Numbers_Temp.Add(F);
                 }
                 else if (A > B)
                 {
                     Debug.Log("**A - B");
                     F = A - B;
-                    Ref_Numbers.Add(F);
+                    Ref_Numbers_Temp.Add(F);
                 }
                 else if (A + B <= 10)
                 {
                     Debug.Log("**A * B");
                     F = A * B;
-                    Ref_Numbers.Add(F);
+                    Ref_Numbers_Temp.Add(F);
                 }
                 else
                 {
                     Debug.Log("**A + B");
                     F = A + B;
-                    Ref_Numbers.Add(F);
+                    Ref_Numbers_Temp.Add(F);
                 }
 
             }
@@ -77,19 +77,19 @@ public class TargetNumber : MonoBehaviour {
                     {
                         Debug.Log("**A + B");
                         F = A + B;
-                        Ref_Numbers.Add(F);
+                        Ref_Numbers_Temp.Add(F);
                     }
                     else if (y == 2)
                     {
                         Debug.Log("**A * B");
                         F = A * B;
-                        Ref_Numbers.Add(F);
+                        Ref_Numbers_Temp.Add(F);
                     }
                     else
                     {
                         Debug.Log("**A / B");
                         F = A / B;
-                        Ref_Numbers.Add(F);
+                        Ref_Numbers_Temp.Add(F);
                     }
                 }
                 else
@@ -101,24 +101,25 @@ public class TargetNumber : MonoBehaviour {
                     {
                         Debug.Log("**A + B");
                         F = A + B;
-                        Ref_Numbers.Add(F);
+                        Ref_Numbers_Temp.Add(F);
                     }
                     else if (y == 2)
                     {
                         Debug.Log("**A * B");
                         F = A * B;
-                        Ref_Numbers.Add(F);
+                        Ref_Numbers_Temp.Add(F);
                     }
                     else
                     {
                         Debug.Log("**A / B");
                         F = A / B;
-                        Ref_Numbers.Add(F);
+                        Ref_Numbers_Temp.Add(F);
                     }
                 }
             }
         }
-        
+
+        Target_Number = Ref_Numbers_Temp[0];
     }
 
 

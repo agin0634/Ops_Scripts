@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class CalculationMethod : MonoBehaviour {
+public class CalculationMethod : MonoBehaviour
+{
 
     public void Test()
     {
