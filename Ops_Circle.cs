@@ -34,11 +34,11 @@ public class Ops_Circle : MonoBehaviour {
                     Ops_Current_mode = 0;
                 }
                 
-                Debug.Log(Ops_Current_mode);
+               // Debug.Log(Ops_Current_mode);
             }
             else
             {
-                Debug.Log("Miss!!");
+                //Debug.Log("Miss!!");
             }
 
             ChangeSprite();

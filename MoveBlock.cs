@@ -5,6 +5,39 @@ using UnityEngine;
 public class MoveBlock : MonoBehaviour {
 
     public float Distance = 10;
+    public bool bIsDragging = false;
+    public bool bIsBeHolding = false;
+    public BlockHolder CurrentHolder = null;
+
+
+    void Update()
+    {
+    }
+
+    void OnTriggerEnter2D(Collider2D Col)
+    {
+        if(Col.tag == "Block_Holder")
+        {
+            if (bIsBeHolding)
+            {
+                if (Col.GetComponent<BlockHolder>() != CurrentHolder)
+                {
+                    CurrentHolder = null;
+                    bIsBeHolding = false;
+                }
+            }      
+        }
+    }
+
+    void OnMouseDown()
+    {
+        bIsDragging = true;
+    }
+
+    void OnMouseUp()
+    {
+        bIsDragging = false;
+    }
 
     void OnMouseDrag()
     {
