@@ -9,4 +9,9 @@ public class MainMenu : MonoBehaviour {
     {
         SceneManager.LoadScene("TimeScene");
     }
+
+    public void PlaySample()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
 }
