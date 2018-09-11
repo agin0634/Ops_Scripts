@@ -6,27 +6,51 @@ public class MoveBlock : MonoBehaviour {
 
     public float Distance = 10;
     public bool bIsDragging = false;
-    public bool bIsBeHolding = false;
-    public BlockHolder CurrentHolder = null;
+    public List<Collider2D> NearsetObject;
+    public BlockHolder NearestBlock;
 
 
     void Update()
     {
+        if (NearsetObject.Count != 0)
+        {
+            NearestBlock = GetNearestBlock();
+        }
+        if (!bIsDragging && NearestBlock)
+        {
+            transform.position = NearestBlock.transform.position;
+            NearestBlock.GetComponent<Collider2D>().enabled = false;
+        }
     }
 
     void OnTriggerEnter2D(Collider2D Col)
     {
-        if(Col.tag == "Block_Holder")
+        if (Col.tag == "Block_Holder")
         {
-            if (bIsBeHolding)
-            {
-                if (Col.GetComponent<BlockHolder>() != CurrentHolder)
-                {
-                    CurrentHolder = null;
-                    bIsBeHolding = false;
-                }
-            }      
+            NearsetObject.Add(Col);
         }
+    }
+
+    void OnTriggerExit2D()
+    {
+        NearsetObject.Clear();
+    }
+
+    BlockHolder GetNearestBlock()
+    {
+        float NearestDistance = 100000;
+        BlockHolder nearestBlock = null;
+
+        for(int i = 0; i <= NearsetObject.Count - 1; i++)
+        {
+            float CurrentDistance = Vector3.Distance(NearsetObject[i].transform.position, transform.position);
+            if( CurrentDistance < NearestDistance)
+            {
+                NearestDistance = CurrentDistance;
+                nearestBlock = NearsetObject[0].GetComponent<BlockHolder>();
+            }
+        }
+        return nearestBlock;
     }
 
     void OnMouseDown()
