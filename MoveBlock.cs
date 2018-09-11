@@ -21,6 +21,13 @@ public class MoveBlock : MonoBehaviour {
             transform.position = NearestBlock.transform.position;
             NearestBlock.GetComponent<Collider2D>().enabled = false;
         }
+        else
+        {
+            if (NearestBlock)
+            {
+                NearestBlock.GetComponent<Collider2D>().enabled = true;
+            } 
+        }
     }
 
     void OnTriggerEnter2D(Collider2D Col)
