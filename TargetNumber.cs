@@ -12,6 +12,8 @@ public class TargetNumber : MonoBehaviour
     public List<int> Ref_Numbers;
     public List<int> Ref_Numbers_Temp;
 
+    public MainGameManager GameManager;
+
     // Draw balls from the pool, according to Difficulty
     public void DrawBall()
     {
@@ -122,15 +124,15 @@ public class TargetNumber : MonoBehaviour
         Target_Number = Ref_Numbers_Temp[0];
     }
 
-
-
-    // Use this for initialization
     void Start () {
+        if (GameManager)
+        {
+            Difficulty = GameManager.GameDifficulty;
+        }
         DrawBall();
         CalculateTargetNumber();
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 		
 	}
