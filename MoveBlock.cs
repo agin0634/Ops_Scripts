@@ -8,10 +8,16 @@ public class MoveBlock : MonoBehaviour {
     public bool bIsDragging = false;
     public List<Collider2D> NearsetObject;
     public BlockHolder NearestBlock;
+    public TextWithBlock TwB;
 
 
     void Update()
     {
+        if (!TwB)
+        {
+            TwB = this.GetComponent<TextWithBlock>();
+        }
+
         if (NearsetObject.Count != 0)
         {
             NearestBlock = GetNearestBlock();
@@ -20,12 +26,14 @@ public class MoveBlock : MonoBehaviour {
         {
             transform.position = NearestBlock.transform.position;
             NearestBlock.GetComponent<Collider2D>().enabled = false;
+            NearestBlock.CurrentBlockNumber = TwB.BlockNumber;
         }
         else
         {
             if (NearestBlock)
             {
                 NearestBlock.GetComponent<Collider2D>().enabled = true;
+                NearestBlock.CurrentBlockNumber = 0;
             } 
         }
     }
