@@ -9,6 +9,7 @@ public class MoveBlock : MonoBehaviour {
     public List<Collider2D> NearsetObject;
     public BlockHolder NearestBlock;
     public TextWithBlock TwB;
+    public string Block_Tag = "Block_Holder";
 
 
     void Update()
@@ -40,7 +41,7 @@ public class MoveBlock : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D Col)
     {
-        if (Col.tag == "Block_Holder")
+        if (Col.tag == Block_Tag)
         {
             NearsetObject.Add(Col);
         }

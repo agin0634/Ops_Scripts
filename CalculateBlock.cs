@@ -8,11 +8,13 @@ public class CalculateBlock : MonoBehaviour {
     public BlockHolder B_Block;
     public Ops_Circle Ops;
     public int F_Number = 0;
+    public GameObject Block_F_Prefab;
+    public GameObject CurrentBlock_F;
 
 	// Use this for initialization
 	void Start ()
     {
-		
+        CurrentBlock_F = SpawnBlock_F();
 	}
 	
 	// Update is called once per frame
@@ -22,10 +24,22 @@ public class CalculateBlock : MonoBehaviour {
         {
             F_Number = Calculate(A_Block.CurrentBlockNumber, B_Block.CurrentBlockNumber, Ops.Ops_Current_mode);
             this.GetComponent<TextWithBlock>().BlockNumber = F_Number;
+            CurrentBlock_F.GetComponent<TextWithBlock>().BlockNumber = F_Number;
+        }
+        else
+        {
+            this.GetComponent<TextWithBlock>().BlockNumber = -1;
+            CurrentBlock_F.GetComponent<TextWithBlock>().BlockNumber = -1;
         }
 
         
 	}
+
+    GameObject SpawnBlock_F()
+    {
+        GameObject go = Instantiate(Block_F_Prefab, transform.position, transform.rotation);
+        return go;
+    }
 
     int Calculate (int A , int B , int ops_number)
     {
@@ -39,7 +53,7 @@ public class CalculateBlock : MonoBehaviour {
         {
             // A-B
             F = A - B;
-            if (F < 0)
+            if (F <= 0)
             {
                 F = -1;
             }
