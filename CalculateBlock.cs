@@ -41,7 +41,7 @@ public class CalculateBlock : MonoBehaviour {
             F = A - B;
             if (F < 0)
             {
-                F = 0;
+                F = -1;
             }
         }
         else if(ops_number == 2)
@@ -58,7 +58,7 @@ public class CalculateBlock : MonoBehaviour {
             }
             else
             {
-                F = 0;
+                F = -1;
             }
         }
         return F;
