@@ -63,7 +63,7 @@ public class MoveBlock : MonoBehaviour {
             if( CurrentDistance < NearestDistance)
             {
                 NearestDistance = CurrentDistance;
-                nearestBlock = NearsetObject[0].GetComponent<BlockHolder>();
+                nearestBlock = NearsetObject[i].GetComponent<BlockHolder>();
             }
         }
         return nearestBlock;
