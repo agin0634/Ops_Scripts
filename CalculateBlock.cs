@@ -24,12 +24,18 @@ public class CalculateBlock : MonoBehaviour {
         {
             F_Number = Calculate(A_Block.CurrentBlockNumber, B_Block.CurrentBlockNumber, Ops.Ops_Current_mode);
             this.GetComponent<TextWithBlock>().BlockNumber = F_Number;
-            CurrentBlock_F.GetComponent<TextWithBlock>().BlockNumber = F_Number;
+            CurrentBlock_F.GetComponent<TextWithBlock>().BlockNumber = F_Number;           
         }
         else
         {
             this.GetComponent<TextWithBlock>().BlockNumber = -1;
             CurrentBlock_F.GetComponent<TextWithBlock>().BlockNumber = -1;
+            //CurrentBlock_F.transform.position = transform.position;
+        }
+
+        if (CurrentBlock_F.GetComponent<TextWithBlock>().BlockNumber < 0)
+        {
+            CurrentBlock_F.transform.position = transform.position;
         }
 
         

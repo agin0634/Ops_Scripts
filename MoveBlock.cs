@@ -28,6 +28,7 @@ public class MoveBlock : MonoBehaviour {
             transform.position = NearestBlock.transform.position;
             NearestBlock.GetComponent<Collider2D>().enabled = false;
             NearestBlock.CurrentBlockNumber = TwB.BlockNumber;
+            this.transform.gameObject.SetActive(true);
         }
         else
         {
@@ -37,6 +38,7 @@ public class MoveBlock : MonoBehaviour {
                 NearestBlock.CurrentBlockNumber = 0;
             } 
         }
+  
     }
 
     void OnTriggerEnter2D(Collider2D Col)
