@@ -8,6 +8,8 @@ public class MainMenu : MonoBehaviour {
     private bool bIsButtonPressed = false;
     private bool bAnimationPlaying = false;
     private bool bCanRunProgress = true;
+    private bool bIsFirstTime = true;
+    public float AnimSpeed = 1.0f;
     public Animator ChallengeAmin;
     public Animator TrainingAmin;
     public Animator SettingsAmin;
@@ -19,6 +21,14 @@ public class MainMenu : MonoBehaviour {
         {
             if (!bAnimationPlaying)
             {
+                if (bIsFirstTime)
+                {
+                    bIsFirstTime = false;
+                    ChallengeAmin.speed = AnimSpeed;
+                    TrainingAmin.speed = AnimSpeed;
+                    SettingsAmin.speed = AnimSpeed;
+                    SubMenuAmin.speed = AnimSpeed;
+                }
                 ChallengeAmin.SetBool("ButtonPressed", true);
                 TrainingAmin.SetBool("ButtonPressed", true);
                 SettingsAmin.SetBool("ButtonPressed", true);
