@@ -6,33 +6,90 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour {
 
     private bool bIsButtonPressed = false;
-    public Animator ChallengeAm;
-    public Animator TrainingAm;
-    public Animator SettingsAm; 
+    private bool bAnimationPlaying = false;
+    private bool bCanRunProgress = true;
+    public Animator ChallengeAmin;
+    public Animator TrainingAmin;
+    public Animator SettingsAmin;
+    public Animator SubMenuAmin;
 
     void Update()
     {
         if (bIsButtonPressed)
         {
-            ChallengeAm.SetBool("ButtonPressed", true);
-            TrainingAm.SetBool("ButtonPressed", true);
-            SettingsAm.SetBool("ButtonPressed", true);
-            bIsButtonPressed = false;
+            if (!bAnimationPlaying)
+            {
+                ChallengeAmin.SetBool("ButtonPressed", true);
+                TrainingAmin.SetBool("ButtonPressed", true);
+                SettingsAmin.SetBool("ButtonPressed", true);
+                SubMenuAmin.SetBool("ButtonPressed", true);
+                bIsButtonPressed = false;
+            }      
+        }
+
+        if (SettingsAmin.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
+        {
+            bAnimationPlaying = true;
+            bCanRunProgress = true;
+            Debug.Log("Playing");
+        }
+        else
+        {
+            if (bCanRunProgress)
+            {
+                bAnimationPlaying = false;
+                bCanRunProgress = false;
+                if (SubMenuAmin.GetCurrentAnimatorStateInfo(0).IsName("SubMenu"))
+                {
+                    SetSubMenuActive();
+                }
+                Debug.Log("Stop");
+            }        
         }
     }
 
     public void PlayChallengeMode()
     {
-        bIsButtonPressed = true;
+        if (!bAnimationPlaying)
+        {
+            bIsButtonPressed = true;
+            SubMenuAmin.transform.GetChild(0).transform.gameObject.SetActive(true);
+        }
     }
 
     public void PlayTraning()
     {
-        bIsButtonPressed = true;
+        if (!bAnimationPlaying)
+        {
+            bIsButtonPressed = true;
+            SubMenuAmin.transform.GetChild(1).transform.gameObject.SetActive(true);
+        }
     }
 
     public void PlaySettings()
     {
-        bIsButtonPressed = true;
+        if (!bAnimationPlaying)
+        {
+            bIsButtonPressed = true;
+            SubMenuAmin.transform.GetChild(2).transform.gameObject.SetActive(true);
+        }
+    }
+
+    public void BacktoMain()
+    {
+        if (!bAnimationPlaying)
+        {
+            ChallengeAmin.SetBool("ButtonPressed", false);
+            TrainingAmin.SetBool("ButtonPressed", false);
+            SettingsAmin.SetBool("ButtonPressed", false);
+            SubMenuAmin.SetBool("ButtonPressed", false);
+        }
+    }
+
+    private void SetSubMenuActive()
+    {
+        SubMenuAmin.transform.GetChild(0).transform.gameObject.SetActive(false);
+        SubMenuAmin.transform.GetChild(1).transform.gameObject.SetActive(false);
+        SubMenuAmin.transform.GetChild(2).transform.gameObject.SetActive(false);
     }
 }
