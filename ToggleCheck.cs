@@ -7,8 +7,8 @@ public class ToggleCheck : MonoBehaviour {
 
     public Toggle To;
     public GameObject Go;
-
-    public bool isOn;
+    
+    public int isOn;
     private bool switching = false;
 
     private float handleSize;
@@ -29,8 +29,7 @@ public class ToggleCheck : MonoBehaviour {
     void Awake()
     {
         To = gameObject.GetComponent<Toggle>();
-        isOn = To.isOn;
-
+       
         HandleRect = Go.GetComponent<RectTransform>();
         ToRect = To.GetComponent<RectTransform>();
         handleSize = HandleRect.sizeDelta.x;
@@ -42,7 +41,17 @@ public class ToggleCheck : MonoBehaviour {
 
     void Start ()
     {
-        if (isOn)
+        /*
+        if (To.isOn)
+        {
+            isOn = 1;
+        }
+        else
+        {
+            isOn = 0;
+        }*/
+
+        if (isOn == 1 )
         {
             Go.GetComponent<RectTransform>().anchoredPosition3D = new Vector3(onPosX, 0f, 0f);
             Go.transform.localScale = new Vector3(1f, 1f, 1f);
@@ -58,7 +67,7 @@ public class ToggleCheck : MonoBehaviour {
     {
         if (switching)
         {
-            Toggle(isOn);
+            Toggle(isOn == 1);
         }
     }
 
@@ -106,12 +115,12 @@ public class ToggleCheck : MonoBehaviour {
             t = 0.0f;
             switch (isOn)
             {
-                case true:
-                    isOn = false;
+                case 1:
+                    isOn = 0;
                     break;
 
-                case false:
-                    isOn = true;
+                case 0:
+                    isOn = 1;
                     break;
             }
 
