@@ -5,14 +5,24 @@ using UnityEngine;
 public class MainGameManager : MonoBehaviour {
 
     public int GameDifficulty = 4;
+    public GameManager instance;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    void Awake()
+    {
+        instance = FindObjectOfType<GameManager>();
+        if (instance)
+        {
+            GameDifficulty = instance.Difficulty;
+        }
+    }
+    
+	void Start ()
+    {
+        
+    }
+
+	void Update ()
+    {
 		
 	}
 }
