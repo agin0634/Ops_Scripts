@@ -9,8 +9,10 @@ public class SubMenu : MonoBehaviour {
     public GameObject Settings_BGM_Toggle;
     public GameObject Settings_DarkMode_Toggle;
 
+    private int NotFirstTime;
+
     [SerializeField]
-    public bool bIsFirstTime = true;
+    public int IsNotFirstTime;
 
     [SerializeField]
     public int Traing_Timer;
@@ -24,27 +26,36 @@ public class SubMenu : MonoBehaviour {
     public void Awake()
     {
         // Training Menu
-        //Traing_Timer = PlayerPrefs.GetInt("Training_Timer");
+        Traing_Timer = PlayerPrefs.GetInt("Training_Timer");
         Training_Timer_Toggle.GetComponent<ToggleCheck>().isOn = Traing_Timer;
 
         // Settings Menu
-        //Settings_SFX = PlayerPrefs.GetInt("Settings_SFX");
+        Settings_SFX = PlayerPrefs.GetInt("Settings_SFX");
         Settings_SFX_Toggle.GetComponent<ToggleCheck>().isOn = Settings_SFX;
 
-        //Settings_BGM = PlayerPrefs.GetInt("Settings_BGM");
+        Settings_BGM = PlayerPrefs.GetInt("Settings_BGM");
         Settings_BGM_Toggle.GetComponent<ToggleCheck>().isOn = Settings_BGM;
 
-        //Settings_DarkMode = PlayerPrefs.GetInt("Settings_DarkMode");
+        Settings_DarkMode = PlayerPrefs.GetInt("Settings_DarkMode");
         Settings_DarkMode_Toggle.GetComponent<ToggleCheck>().isOn = Settings_DarkMode;
 
-        if(bIsFirstTime){
-            Training_Timer_Toggle.GetComponent<ToggleCheck>().isOn = 1;
-            Settings_SFX_Toggle.GetComponent<ToggleCheck>().isOn = 1;
-            Settings_BGM_Toggle.GetComponent<ToggleCheck>().isOn = 1;
-            Settings_DarkMode_Toggle.GetComponent<ToggleCheck>().isOn = 0;
-            bIsFirstTime = false;
-        }
+        NotFirstTime = PlayerPrefs.GetInt("IsNotFirstTime");
 
+        if (NotFirstTime == 0)
+        {
+            Training_Timer_Toggle.GetComponent<ToggleCheck>().isOn = 1;
+            PlayerPrefs.SetInt("Training_Timer", 1);
+            Settings_SFX_Toggle.GetComponent<ToggleCheck>().isOn = 1;
+            PlayerPrefs.SetInt("Settings_SFX", 1);
+            Settings_BGM_Toggle.GetComponent<ToggleCheck>().isOn = 1;
+            PlayerPrefs.SetInt("Settings_BGM", 1);
+            Settings_DarkMode_Toggle.GetComponent<ToggleCheck>().isOn = 0;
+            PlayerPrefs.SetInt("Settings_DarkMode", 0);
+            PlayerPrefs.SetInt("IsNotFirstTime", 1);
+            
+            PlayerPrefs.Save();
+            Debug.Log("load");
+        }
     }
     
 	void Start ()
