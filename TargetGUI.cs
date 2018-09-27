@@ -33,7 +33,14 @@ public class TargetGUI : MonoBehaviour {
             {
                 Go_Button.transform.gameObject.SetActive(true);
                 bIsDone = true;
-            } 
+            }
+        }
+
+        if (Target_GUI_Anim.GetCurrentAnimatorStateInfo(0).IsName("Target_GUI") &&
+            Target_GUI_Anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
+        {
+            this.transform.gameObject.SetActive(false);
+            Debug.Log(":");
         }
     }
 

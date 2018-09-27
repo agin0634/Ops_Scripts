@@ -10,12 +10,10 @@ public class Timer : MonoBehaviour {
     string timerText;
     public Text Timer_Text;
     MainGameManager GameManager;
-    GameManager instance;
 
 	// Use this for initialization
 	void Start () {
         GameManager = FindObjectOfType<MainGameManager>();
-        instance = FindObjectOfType<GameManager>();
 	}
 	
 	// Update is called once per frame
