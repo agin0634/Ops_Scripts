@@ -41,7 +41,6 @@ public class MainMenu : MonoBehaviour {
         {
             bAnimationPlaying = true;
             bCanRunProgress = true;
-            Debug.Log("Playing");
         }
         else
         {
@@ -53,7 +52,6 @@ public class MainMenu : MonoBehaviour {
                 {
                     SetSubMenuActive();
                 }
-                Debug.Log("Stop");
             }        
         }
     }

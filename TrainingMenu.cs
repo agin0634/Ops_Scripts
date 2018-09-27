@@ -66,6 +66,7 @@ public class TrainingMenu : MonoBehaviour {
         SubMenuAnim.SetBool("ButtonPressed", false);
         GameLogoAnim.SetBool("LogoExit", true);
         bIsAnimExit = true;
+        instance.GameMode = 1;
     }
     
 

@@ -7,7 +7,7 @@ public class CalculateBlock : MonoBehaviour {
     public BlockHolder A_Block;
     public BlockHolder B_Block;
     public Ops_Circle Ops;
-    public int F_Number = 0;
+    public int F_Number = 1;
     public GameObject Block_F_Prefab;
     public GameObject CurrentBlock_F;
 
@@ -36,6 +36,7 @@ public class CalculateBlock : MonoBehaviour {
         if (CurrentBlock_F.GetComponent<TextWithBlock>().BlockNumber < 0)
         {
             CurrentBlock_F.transform.position = transform.position;
+            
         }
 
         

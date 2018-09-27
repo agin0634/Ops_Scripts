@@ -9,7 +9,7 @@ public class TextWithBlock : MonoBehaviour {
     public int BlockNumber = 0;
 
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate() {
         Vector3 NumberPosition = Camera.main.WorldToScreenPoint(this.transform.position);
         NumberText.transform.position = NumberPosition;
 

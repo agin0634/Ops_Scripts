@@ -7,7 +7,7 @@ public class SpawnMoveBlock : MonoBehaviour {
     public GameObject BlockPrefab;
     public BlockManager BM;
     public MainGameManager GameManager;
-    public bool SpawnDone = false;
+    private bool SpawnDone = false;
     public TargetNumber TN;
     public int BlockCount;
 

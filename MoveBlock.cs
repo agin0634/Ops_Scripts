@@ -10,6 +10,7 @@ public class MoveBlock : MonoBehaviour {
     public BlockHolder NearestBlock;
     public TextWithBlock TwB;
     public string Block_Tag = "Block_Holder";
+    public bool bCanbeDrag = true;
 
 
     void Update()
@@ -83,8 +84,11 @@ public class MoveBlock : MonoBehaviour {
 
     void OnMouseDrag()
     {
-        Vector3 MousePostion = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Distance);
-        Vector3 BlockPostion = Camera.main.ScreenToWorldPoint(MousePostion);
-        transform.position = BlockPostion;
+        if (bCanbeDrag)
+        {
+            Vector3 MousePostion = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Distance);
+            Vector3 BlockPostion = Camera.main.ScreenToWorldPoint(MousePostion);
+            transform.position = BlockPostion;
+        }     
     }
 }
