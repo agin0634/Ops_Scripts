@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance = null;
 
+    public int GameMode;
     public int Difficulty = 4;
 
 	void Awake ()

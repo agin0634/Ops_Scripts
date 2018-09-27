@@ -7,9 +7,12 @@ public class TargetGUI : MonoBehaviour {
 
     public MainGameManager GameManager;
     public Text TargetNumberText;
+
     public Animator TargetCircle_Anim;
     public Animator Target_GUI_Anim;
     public Animator Camera_Anim;
+    public Animator BAR_GUI_Anim;
+
     public GameObject Go_Button;
     private bool bIsDone = false;
     
@@ -38,5 +41,7 @@ public class TargetGUI : MonoBehaviour {
     {
         Target_GUI_Anim.SetBool("Start", true);
         Camera_Anim.SetBool("Start", true);
+        BAR_GUI_Anim.SetBool("Start", true);
+        GameManager.TimeStop = false;
     }
 }
