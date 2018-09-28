@@ -40,7 +40,6 @@ public class TargetGUI : MonoBehaviour {
             Target_GUI_Anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
         {
             this.transform.gameObject.SetActive(false);
-            Debug.Log(":");
         }
     }
 

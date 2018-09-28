@@ -26,7 +26,7 @@ public class BAR_GUI : MonoBehaviour {
         }
         if(instance.GameMode == 1)
         {
-            Level_Text.text = "Training";
+            Level_Text.text = "--";
         }
 
         Target_s_Text.text = GameManager.GetComponent<TargetNumber>().Target_Number.ToString();

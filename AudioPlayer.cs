@@ -40,12 +40,10 @@ public class AudioPlayer : MonoBehaviour {
         if (bIsToggleOn == 0)
         {
             gameObject.GetComponent<AudioSource>().Pause();
-            Debug.Log("Off");
         }
         else
         {
             gameObject.GetComponent<AudioSource>().Play();
-            Debug.Log("HO");
         }
     }
 }

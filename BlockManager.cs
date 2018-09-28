@@ -9,7 +9,6 @@ public class BlockManager : MonoBehaviour {
     public GameObject[] Equation;
     public MainGameManager GameManager;
     
-	// Use this for initialization
 	void Start () {
         if (GameManager)
         {
