@@ -9,9 +9,8 @@ public class MoveBlock : MonoBehaviour {
     public List<Collider2D> NearsetObject;
     public BlockHolder NearestBlock;
     public TextWithBlock TwB;
-    public string Block_Tag = "Block_Holder";
     public bool bCanbeDrag = true;
-
+    public bool bBlockIsHold = false;
 
     void Update()
     {
@@ -30,6 +29,10 @@ public class MoveBlock : MonoBehaviour {
             NearestBlock.GetComponent<Collider2D>().enabled = false;
             NearestBlock.CurrentBlockNumber = TwB.BlockNumber;
             this.transform.gameObject.SetActive(true);
+            if(NearestBlock.tag == "Block_Holder")
+            {
+                bBlockIsHold = true;
+            }
         }
         else
         {
@@ -37,6 +40,7 @@ public class MoveBlock : MonoBehaviour {
             {
                 NearestBlock.GetComponent<Collider2D>().enabled = true;
                 NearestBlock.CurrentBlockNumber = 0;
+                bBlockIsHold = false;
             } 
         }
   
@@ -44,7 +48,7 @@ public class MoveBlock : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D Col)
     {
-        if (Col.tag == Block_Tag)
+        if (Col.tag == "Block_Holder" || Col.tag == "Block_Holder_R")
         {
             NearsetObject.Add(Col);
         }

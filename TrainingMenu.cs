@@ -25,8 +25,6 @@ public class TrainingMenu : MonoBehaviour {
 
         if (bIsAnimExit)
         {
-            Debug.Log(GameLogoAnim.GetCurrentAnimatorStateInfo(0).normalizedTime);
-            
             if (GameLogoAnim.GetCurrentAnimatorStateInfo(0).IsName("GameLogoExit") && 
                 GameLogoAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
             {
