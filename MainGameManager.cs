@@ -83,8 +83,11 @@ public class MainGameManager : MonoBehaviour {
             {
                 if (mB_F[j].GetComponent<TextWithBlock>().BlockNumber == tN.Target_Number)
                 {
-                    bIsHitTarget = true;
-                    break;
+                    if (!mB_F[j].GetComponent<MoveBlock>().bBlockIsHold)
+                    {
+                        bIsHitTarget = true;
+                        break;
+                    }
                 }
                 else
                 {

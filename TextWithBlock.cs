@@ -19,7 +19,7 @@ public class TextWithBlock : MonoBehaviour {
         }
         else
         {
-            NumberText.text = "N/A";
+            NumberText.text = "Oops";
         }
     }
 }
