@@ -5,6 +5,7 @@ using UnityEngine;
 public class MoveBlock : MonoBehaviour {
 
     public float Distance = 10;
+    public bool bIsBlock_F = false;
     public bool bIsDragging = false;
     public List<Collider2D> NearsetObject;
     public BlockHolder NearestBlock;
@@ -23,12 +24,11 @@ public class MoveBlock : MonoBehaviour {
         {
             NearestBlock = GetNearestBlock();
         }
-        if (!bIsDragging && NearestBlock)
+
+        if (!bIsDragging && NearestBlock && TwB.BlockNumber >= 0)
         {
             transform.position = NearestBlock.transform.position;
-            NearestBlock.GetComponent<Collider2D>().enabled = false;
             NearestBlock.CurrentBlockNumber = TwB.BlockNumber;
-            this.transform.gameObject.SetActive(true);
             if(NearestBlock.tag == "Block_Holder")
             {
                 bBlockIsHold = true;
@@ -36,27 +36,48 @@ public class MoveBlock : MonoBehaviour {
         }
         else
         {
-            if (NearestBlock)
-            {
-                NearestBlock.GetComponent<Collider2D>().enabled = true;
-                NearestBlock.CurrentBlockNumber = 0;
-                bBlockIsHold = false;
-            } 
+            DetachBlock();
         }
   
     }
 
     void OnTriggerEnter2D(Collider2D Col)
     {
-        if (Col.tag == "Block_Holder" || Col.tag == "Block_Holder_R")
+        if (bIsBlock_F)
         {
-            NearsetObject.Add(Col);
+            if (Col.tag == "Block_Holder" || Col.tag == "Block_Holder_R")
+            {
+                NearsetObject.Add(Col);
+            }
+            if (Col.tag == "Block_Holder_F")
+            {
+                if (Col.GetComponent<CalculateBlock>().CurrentBlock_F == this.gameObject)
+                {
+                    NearsetObject.Add(Col);
+                }
+            }
+        }
+        else
+        {
+            if (Col.tag == "Block_Holder" || Col.tag == "Block_Holder_R")
+            {
+                NearsetObject.Add(Col);
+            }
         }
     }
 
     void OnTriggerExit2D()
     {
         NearsetObject.Clear();
+    }
+
+    public void DetachBlock()
+    {
+        if (NearestBlock)
+        {
+            NearestBlock.CurrentBlockNumber = -1;
+            bBlockIsHold = false;
+        }
     }
 
     BlockHolder GetNearestBlock()

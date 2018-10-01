@@ -12,16 +12,14 @@ public class TextWithBlock : MonoBehaviour {
 	void FixedUpdate() {
         Vector3 NumberPosition = Camera.main.WorldToScreenPoint(this.transform.position);
         NumberText.transform.position = NumberPosition;
-
-        if (BlockNumber < 0)
-        {
-            NumberText.text = "N/A";
-            return;
-        }
-        else if (BlockNumber != 0)
+        
+        if(BlockNumber >= 0)
         {
             NumberText.text = BlockNumber.ToString();
-            return;
+        }
+        else
+        {
+            NumberText.text = "N/A";
         }
     }
 }

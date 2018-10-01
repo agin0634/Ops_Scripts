@@ -20,7 +20,7 @@ public class CalculateBlock : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-	    if(A_Block.CurrentBlockNumber != 0 && B_Block.CurrentBlockNumber != 0)
+	    if(A_Block.CurrentBlockNumber > 0 && B_Block.CurrentBlockNumber > 0)
         {
             F_Number = Calculate(A_Block.CurrentBlockNumber, B_Block.CurrentBlockNumber, Ops.Ops_Current_mode);
             this.GetComponent<TextWithBlock>().BlockNumber = F_Number;
@@ -30,11 +30,11 @@ public class CalculateBlock : MonoBehaviour {
         {
             this.GetComponent<TextWithBlock>().BlockNumber = -1;
             CurrentBlock_F.GetComponent<TextWithBlock>().BlockNumber = -1;
-            //CurrentBlock_F.transform.position = transform.position;
         }
 
         if (CurrentBlock_F.GetComponent<TextWithBlock>().BlockNumber < 0)
         {
+            //CurrentBlock_F.GetComponent<MoveBlock>().DetachBlock();
             CurrentBlock_F.transform.position = transform.position;
             
         }
