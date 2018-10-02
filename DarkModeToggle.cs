@@ -5,19 +5,25 @@ using UnityEngine;
 public class DarkModeToggle : MonoBehaviour {
 
     public int bIsToggleOn;
+    public DarkMode_Main DK_Main;
     
     void Start ()
     {
+
+        if (!DK_Main)
+        {
+            DK_Main = FindObjectOfType<DarkMode_Main>();
+        }
         
         bIsToggleOn = PlayerPrefs.GetInt("Settings_DarkMode");
 
         if (bIsToggleOn == 0)
         {
-            // bright
+            DK_Main.DarkOff();
         }
         else
         {
-            // dark
+            DK_Main.DarkOn();
         }
 
     }
@@ -35,11 +41,11 @@ public class DarkModeToggle : MonoBehaviour {
     {
         if (bIsToggleOn == 0)
         {
-            //bright
+            DK_Main.DarkOff();
         }
         else
         {
-            //dark
+            DK_Main.DarkOn();
         }
     }
 }
