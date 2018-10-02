@@ -17,6 +17,7 @@ public class MainGameManager : MonoBehaviour {
     public bool bIsHitTarget = false;
     public bool bIsAllBlockUsed = false;
     public bool TimeStop = true;
+    public bool bWin = false;
 
     void Awake()
     {
@@ -98,7 +99,8 @@ public class MainGameManager : MonoBehaviour {
             // Check Win
             if (bIsAllBlockUsed && bIsHitTarget)
             {
-                Debug.Log("Win");
+                TimeStop = true;
+                bWin = true;
             }
         }
         
