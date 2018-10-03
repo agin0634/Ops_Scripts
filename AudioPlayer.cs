@@ -4,25 +4,36 @@ using UnityEngine;
 
 public class AudioPlayer : MonoBehaviour {
 
-    public AudioSource aS;
+    public static AudioSource aS = null;
     public int bIsToggleOn;
 
 	// Use this for initialization
 	void Start ()
     {
-        aS = gameObject.GetComponent<AudioSource>();
         
-        DontDestroyOnLoad(gameObject);
-        
-        bIsToggleOn = PlayerPrefs.GetInt("Settings_BGM");
-
-        if (bIsToggleOn == 0)
+        if (aS == null)
         {
-            gameObject.GetComponent<AudioSource>().Pause();
+            aS = gameObject.GetComponent<AudioSource>();
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
-            gameObject.GetComponent<AudioSource>().Play();
+            Destroy(gameObject);
+        }
+
+        if (aS)
+        {
+
+            bIsToggleOn = PlayerPrefs.GetInt("Settings_BGM");
+
+            if (bIsToggleOn == 0)
+            {
+                gameObject.GetComponent<AudioSource>().Pause();
+            }
+            else
+            {
+                gameObject.GetComponent<AudioSource>().Play();
+            }
         }
     }
 	
