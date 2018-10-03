@@ -6,23 +6,13 @@ using UnityEngine.UI;
 public class DarkMode_Main : MonoBehaviour {
 
     public Color32 Dark_Color = new Color32(38, 48, 54, 255);
-    public Color32 Bright_Color = new Color32(190, 171, 145, 205);
+    public Color32 Bright_Color = new Color32(190, 171, 145, 255);
 
     public GameObject MainMenu;
     public GameObject GameLogo;
     public GameObject[] gO;
     public Text[] Game_text; 
-    
-    void Start ()
-    {
         
-    }
-	
-	void Update ()
-    {
-		
-	}
-    
     public void DarkOn()
     {
         MainMenu.GetComponent<Image>().color = Dark_Color;

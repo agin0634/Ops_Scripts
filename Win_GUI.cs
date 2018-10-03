@@ -18,6 +18,7 @@ public class Win_GUI : MonoBehaviour {
     private Timer timer;
     private bool bIsDone = false;
     private bool bLoadScene = false;
+    private bool bIsQuit = false;
 
 	void Start ()
     {
@@ -52,7 +53,14 @@ public class Win_GUI : MonoBehaviour {
             if( Win_GUI_Anim.GetCurrentAnimatorStateInfo(0).IsName("Win_GUI") &&
                 Win_GUI_Anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
             {
-                SceneManager.LoadScene("ChallengeScene");
+                if (bIsQuit)
+                {
+                    SceneManager.LoadScene("MainMenu");
+                }
+                else
+                {
+                    SceneManager.LoadScene("ChallengeScene");
+                }
                 bLoadScene = false;
             }
         }
@@ -67,10 +75,13 @@ public class Win_GUI : MonoBehaviour {
     {
         Win_GUI_Anim.SetBool("Start", true);
         bLoadScene = true;
+        bIsQuit = false;
     }
 
     public void QuitButton()
     {
-        SceneManager.LoadScene("MainMenu");
+        Win_GUI_Anim.SetBool("Start", true);
+        bLoadScene = true;
+        bIsQuit = true;
     }
 }

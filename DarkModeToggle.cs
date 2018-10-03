@@ -6,6 +6,7 @@ public class DarkModeToggle : MonoBehaviour {
 
     public int bIsToggleOn;
     public DarkMode_Main DK_Main;
+    public DarkMode_Game DK_Game;
     
     void Start ()
     {
@@ -13,17 +14,32 @@ public class DarkModeToggle : MonoBehaviour {
         if (!DK_Main)
         {
             DK_Main = FindObjectOfType<DarkMode_Main>();
+            DK_Game = FindObjectOfType<DarkMode_Game>();
         }
         
         bIsToggleOn = PlayerPrefs.GetInt("Settings_DarkMode");
 
         if (bIsToggleOn == 0)
         {
-            DK_Main.DarkOff();
+            if (DK_Main)
+            {
+                DK_Main.DarkOff();
+            }
+            if (DK_Game)
+            {
+                DK_Game.DarkOff();
+            }
         }
         else
         {
-            DK_Main.DarkOn();
+            if (DK_Main)
+            {
+                DK_Main.DarkOn();
+            }
+            if (DK_Game)
+            {
+                DK_Game.DarkOn();
+            }
         }
 
     }
@@ -41,11 +57,25 @@ public class DarkModeToggle : MonoBehaviour {
     {
         if (bIsToggleOn == 0)
         {
-            DK_Main.DarkOff();
+            if (DK_Main)
+            {
+                DK_Main.DarkOff();
+            }
+            if (DK_Game)
+            {
+                DK_Game.DarkOff();
+            }
         }
         else
         {
-            DK_Main.DarkOn();
+            if (DK_Main)
+            {
+                DK_Main.DarkOn();
+            }
+            if (DK_Game)
+            {
+                DK_Game.DarkOn();
+            }
         }
     }
 }
