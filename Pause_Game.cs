@@ -56,12 +56,18 @@ public class Pause_Game : MonoBehaviour {
     {
         if (bIsRestart || bIsExit)
         {
+            Win_GUI_Anim.SetBool("Start", true);
+            bIsAnimStop = false;
+            GameManager.TimeStop = false;
+        }
+        else
+        {
             BAR_GUI_Anim.SetBool("Start", true);
             Camera_Anim.SetBool("Start", true);
+            Win_GUI_Anim.SetBool("Start", true);
+            bIsAnimStop = false;
+            GameManager.TimeStop = false;
         }
-        Win_GUI_Anim.SetBool("Start", true);
-        bIsAnimStop = false;
-        GameManager.TimeStop = false;
     }
 
     public void Unpause()
@@ -71,8 +77,8 @@ public class Pause_Game : MonoBehaviour {
 
     public void Restart()
     {
-        HidePauseUI();
         bIsRestart = true;
+        HidePauseUI();
     }
 
     public void Home()
