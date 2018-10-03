@@ -83,8 +83,8 @@ public class Pause_Game : MonoBehaviour {
 
     public void Home()
     {
-        HidePauseUI();
         bIsExit = true;
+        HidePauseUI();
     }
 
 }
