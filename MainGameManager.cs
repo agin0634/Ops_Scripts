@@ -8,9 +8,9 @@ public class MainGameManager : MonoBehaviour {
     public GameManager instance;
     public TargetNumber tN;
 
-    public BlockHolder[] bH;
+    private BlockHolder[] bH;
     public List<BlockHolder> bH_Calculate;
-    public MoveBlock[] mB;
+    private MoveBlock[] mB;
     public List<MoveBlock> mB_F;
     
     public bool bIsDone = false;

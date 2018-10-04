@@ -9,9 +9,13 @@ public class MoveBlock : MonoBehaviour {
     public bool bIsDragging = false;
     public List<Collider2D> NearsetObject;
     public BlockHolder NearestBlock;
+    public BlockHolder FirstBlock;
     public TextWithBlock TwB;
     public bool bCanbeDrag = true;
     public bool bBlockIsHold = false;
+
+    private bool bIsFirstHolder = false;
+    private bool bIsClear = false;
 
     void Update()
     {
@@ -27,12 +31,29 @@ public class MoveBlock : MonoBehaviour {
 
         if (!bIsDragging && NearestBlock && TwB.BlockNumber >= 0)
         {
-            transform.position = NearestBlock.transform.position;
-            NearestBlock.CurrentBlockNumber = TwB.BlockNumber;
+            if (bIsClear)
+            {
+                transform.position = FirstBlock.transform.position;
+                //NearestBlock.CurrentBlockNumber = TwB.BlockNumber;
+                DetachBlock();
+                bIsClear = false;
+            }
+            else
+            {
+                transform.position = NearestBlock.transform.position;
+                NearestBlock.CurrentBlockNumber = TwB.BlockNumber;
+            }
+           
             if(NearestBlock.tag == "Block_Holder")
             {
                 bBlockIsHold = true;
             }
+            if(NearestBlock.tag == "Block_Holder_R" && !bIsFirstHolder)
+            {
+                FirstBlock = NearestBlock;
+                bIsFirstHolder = true;
+            }
+
         }
         else
         {
@@ -45,7 +66,7 @@ public class MoveBlock : MonoBehaviour {
     {
         if (bIsBlock_F)
         {
-            if (Col.tag == "Block_Holder" || Col.tag == "Block_Holder_R")
+            if (Col.tag == "Block_Holder")
             {
                 NearsetObject.Add(Col);
             }
@@ -77,6 +98,14 @@ public class MoveBlock : MonoBehaviour {
         {
             NearestBlock.CurrentBlockNumber = -1;
             bBlockIsHold = false;
+        }
+    }
+
+    public void ClearBlock()
+    {
+        if (FirstBlock)
+        {
+            bIsClear = true;
         }
     }
 
