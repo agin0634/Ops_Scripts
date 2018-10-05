@@ -10,22 +10,40 @@ public class Timer : MonoBehaviour {
     string timerText;
     public Text Timer_Text;
     MainGameManager GameManager;
+    GameManager instance;
 
-	// Use this for initialization
-	void Start () {
+    void Start ()
+    {
+        instance = FindObjectOfType<GameManager>();
         GameManager = FindObjectOfType<MainGameManager>();
 	}
 	
-	// Update is called once per frame
-	void Update () {
-        if (PlayerPrefs.GetInt("Training_Timer") == 1)
+	void Update ()
+    {
+        if(instance.GameMode == 0)
         {
+            // Challenge Mode
             if (!GameManager.TimeStop)
             {
                 timer_f += Time.deltaTime;
                 TimeSpan timeSpan = TimeSpan.FromSeconds(timer_f);
                 timerText = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
                 Timer_Text.text = timerText;
+            }
+        }
+        else if(instance.GameMode == 1)
+        {
+            // Training Mode
+            // Check Timer is enable or disable
+            if (PlayerPrefs.GetInt("Training_Timer") == 1)
+            {
+                if (!GameManager.TimeStop)
+                {
+                    timer_f += Time.deltaTime;
+                    TimeSpan timeSpan = TimeSpan.FromSeconds(timer_f);
+                    timerText = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
+                    Timer_Text.text = timerText;
+                }
             }
         }
     }
