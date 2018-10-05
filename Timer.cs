@@ -6,16 +6,25 @@ using System;
 
 public class Timer : MonoBehaviour {
 
-    float timer_f;
-    string timerText;
+    public float timer_f;
+    private string timerText;
     public Text Timer_Text;
     MainGameManager GameManager;
     GameManager instance;
+    public Win_GUI win_gui;
+
+    public bool bIsDone = false;
 
     void Start ()
     {
         instance = FindObjectOfType<GameManager>();
         GameManager = FindObjectOfType<MainGameManager>();
+        win_gui = FindObjectOfType<Win_GUI>();
+
+        if (instance.GameMode == 0)
+        {
+            timer_f = instance.CurrentTime;
+        }
 	}
 	
 	void Update ()
@@ -30,6 +39,13 @@ public class Timer : MonoBehaviour {
                 timerText = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
                 Timer_Text.text = timerText;
             }
+
+            if (GameManager.bChallengeWin && !bIsDone)
+            {
+                CheckBestTime();
+                bIsDone = true;
+            }
+
         }
         else if(instance.GameMode == 1)
         {
@@ -47,4 +63,26 @@ public class Timer : MonoBehaviour {
             }
         }
     }
+
+    void CheckBestTime()
+    {
+        float timer_best = PlayerPrefs.GetFloat("Best_Time", 1000000);
+        Debug.Log(timer_best);
+
+        if (timer_f < timer_best)
+        {
+            // new best!
+            PlayerPrefs.SetFloat("Best_Time", timer_f);
+            win_gui.SwitchWinTitle(true);
+            GameManager.bIsNewBest = true;
+        }
+        else
+        {
+            // oops..
+            win_gui.SwitchWinTitle(false);
+            GameManager.bIsNewBest = false;
+        }
+
+    }
+
 }

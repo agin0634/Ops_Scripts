@@ -18,6 +18,8 @@ public class MainGameManager : MonoBehaviour {
     public bool bIsAllBlockUsed = false;
     public bool TimeStop = true;
     public bool bWin = false;
+    public bool bChallengeWin = false;
+    public bool bIsNewBest = false;
     
     void Awake()
     {
@@ -62,9 +64,22 @@ public class MainGameManager : MonoBehaviour {
                     bIsAllBlockUsed = false;
                     bIsHitTarget = false;
                     TimeStop = true;
-                    bWin = true;
-                    instance.CurrentLevel++;
-                    Debug.Log(instance.CurrentLevel);
+                    instance.CurrentTime = FindObjectOfType<Timer>().timer_f;
+
+                    if (instance.Difficulty == 5)
+                    {
+                        //TODO Final Win
+                        bWin = true;
+                        bChallengeWin = true;
+                        ResetChallengeData();
+                        Debug.Log("Challenge Done");
+                    }
+                    else
+                    {
+                        bWin = true;
+                        instance.CurrentLevel++;
+                        instance.Difficulty++;
+                    }
                 }
             }
             else if(instance.GameMode == 1)
@@ -136,4 +151,12 @@ public class MainGameManager : MonoBehaviour {
             }
         }
     }
+
+    public void ResetChallengeData()
+    {
+        instance.Difficulty = 4;
+        instance.CurrentLevel = 1;
+        instance.CurrentTime = 0f;
+    }
+    
 }

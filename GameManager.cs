@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
 
     public int GameMode;
     public int Difficulty = 4;
-
     public int CurrentLevel = 1;
+    public float CurrentTime = 0f;
 
 	void Awake ()
     {

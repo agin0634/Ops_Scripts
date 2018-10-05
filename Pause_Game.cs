@@ -97,7 +97,6 @@ public class Pause_Game : MonoBehaviour {
         if (instance.GameMode == 0)
         {
             GameManager.ResetChallengeData();
-            // TODO Waring ui
         }
     }
 
@@ -105,12 +104,7 @@ public class Pause_Game : MonoBehaviour {
     {
         bIsExit = true;
         HidePauseUI();
-
-        if(instance.GameMode == 0)
-        {
-            GameManager.ResetChallengeData();
-            // TODO Waring ui
-        }
+        GameManager.ResetChallengeData();
     }
 
     public void Settings()

@@ -19,7 +19,6 @@ public class ChallengeMenu : MonoBehaviour {
 	
 	void FixedUpdate ()
     {
-
         if (bIsAnimExit)
         {
             if (GameLogoAnim.GetCurrentAnimatorStateInfo(0).IsName("GameLogoExit") &&

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class Win_GUI : MonoBehaviour {
 
@@ -13,7 +14,14 @@ public class Win_GUI : MonoBehaviour {
     public Animator BAR_GUI_Anim;
 
     public GameObject gO;
+    public GameManager instance;
     public Text Fin_Time_Text;
+    public GameObject Continue_Button;
+    public Text Win_Title_Text;
+    public Text Best_Time_Text;
+
+    public string NewBestTitle;
+    public string OopsTitle;
 
     private Timer timer;
     private bool bIsDone = false;
@@ -22,6 +30,11 @@ public class Win_GUI : MonoBehaviour {
 
 	void Start ()
     {
+        if (!instance)
+        {
+            instance = FindObjectOfType<GameManager>();
+        }
+
         if (!GameManager)
         {
             GameManager = FindObjectOfType<MainGameManager>();
@@ -45,6 +58,15 @@ public class Win_GUI : MonoBehaviour {
             Win_GUI_Anim.SetBool("Start", false);
             Camera_Anim.SetBool("Start", false);
             BAR_GUI_Anim.SetBool("Start", false);
+
+            if (GameManager.bChallengeWin)
+            {
+                if (timer.bIsDone)
+                {
+                    //SwitchWinTitle(GameManager.bIsNewBest);
+                }
+            }
+
             bIsDone = true;
         }
 
@@ -83,5 +105,30 @@ public class Win_GUI : MonoBehaviour {
         Win_GUI_Anim.SetBool("Start", true);
         bLoadScene = true;
         bIsQuit = true;
+
+        GameManager.ResetChallengeData();
     }
+
+    public void SwitchWinTitle(bool winStatus)
+    {
+        Continue_Button.gameObject.SetActive(false);
+        Win_Title_Text.gameObject.SetActive(true);
+        Best_Time_Text.gameObject.SetActive(true);
+
+        TimeSpan timeSpan = TimeSpan.FromSeconds(PlayerPrefs.GetFloat("Best_Time"));
+        Best_Time_Text.text = string.Format("{0:D2}:{1:D2}", timeSpan.Minutes, timeSpan.Seconds);
+        
+        if (winStatus)
+        {
+            // New Best!
+            Win_Title_Text.text = NewBestTitle;
+        }
+        else
+        {
+            // oops..
+            Win_Title_Text.text = OopsTitle;
+        }
+        
+    }
+
 }
