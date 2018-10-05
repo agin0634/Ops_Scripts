@@ -8,12 +8,15 @@ public class Pause_Game : MonoBehaviour {
     public Animator BAR_GUI_Anim;
     public Animator Camera_Anim;
     public Animator Win_GUI_Anim;
+    public Animator Settings_GUI_Anim;
+
     public GameObject Pause_UI;
     public MainGameManager GameManager;
 
     private bool bIsAnimStop = true;
     private bool bIsRestart = false;
     private bool bIsExit = false;
+    private bool bIsSettings = false;
 
     void Start()
     {
@@ -54,7 +57,7 @@ public class Pause_Game : MonoBehaviour {
 
     public void HidePauseUI()
     {
-        if (bIsRestart || bIsExit)
+        if (bIsRestart || bIsExit || bIsSettings)
         {
             Win_GUI_Anim.SetBool("Start", true);
             bIsAnimStop = false;
@@ -85,6 +88,21 @@ public class Pause_Game : MonoBehaviour {
     {
         bIsExit = true;
         HidePauseUI();
+    }
+
+    public void Settings()
+    {
+        bIsSettings = true;
+        HidePauseUI();
+        Settings_GUI_Anim.SetBool("SettingPressed", true);
+    }
+
+    public void SettingsBack()
+    {
+        bIsSettings = false;
+        Settings_GUI_Anim.SetBool("SettingPressed", false);
+        Win_GUI_Anim.SetBool("Start", false);
+        Pause_UI.gameObject.SetActive(true);
     }
 
 }

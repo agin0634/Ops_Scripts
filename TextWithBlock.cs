@@ -8,8 +8,7 @@ public class TextWithBlock : MonoBehaviour {
     public Text NumberText;
     public int BlockNumber = 0;
     public Animator Camera_Anim;
-
-    private int Ori_Font_Size;
+    
     private bool bIsDone = false;
 
     void Start()
@@ -20,10 +19,7 @@ public class TextWithBlock : MonoBehaviour {
         }
 
         NumberText.GetComponent<Text>().enabled = false;
-
-        Ori_Font_Size = NumberText.fontSize;
-        NumberText.fontSize = 0;
-
+        
     }
     
     
