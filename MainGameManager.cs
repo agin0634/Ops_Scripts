@@ -18,7 +18,7 @@ public class MainGameManager : MonoBehaviour {
     public bool bIsAllBlockUsed = false;
     public bool TimeStop = true;
     public bool bWin = false;
-
+    
     void Awake()
     {
         instance = FindObjectOfType<GameManager>();
@@ -42,67 +42,98 @@ public class MainGameManager : MonoBehaviour {
         // Get all Move Block and pick the tag is Block_F
         if (!bIsDone)
         {
-            bH = FindObjectsOfType<BlockHolder>();
-            mB = FindObjectsOfType<MoveBlock>();
-
-            for (int i = 0; i <= bH.Length - 1; i++)
-            {
-                if (bH[i].transform.gameObject.tag == "Block_Holder")
-                {
-                    bH_Calculate.Add(bH[i]);
-                }
-            }
-
-            for (int j = 0; j <= mB.Length - 1; j++)
-            {
-                if(mB[j].transform.gameObject.tag == "Block_F")
-                {
-                    mB_F.Add(mB[j]);
-                }
-            }
-
-            bIsDone = true;
+            GetBlock();
         }
-
+        
         // Check the block is or isn't using
         if (bIsDone)
         {
-            for (int i = 0; i <= bH_Calculate.Count - 1; i++)
+            // Check Win
+            if(!bWin)
             {
-                if (bH_Calculate[i].CurrentBlockNumber <= 0)
+                CheckBlock();
+            }
+            
+            if (instance.GameMode == 0)
+            {
+                // Challenge Mode
+                if (bIsAllBlockUsed && bIsHitTarget)
                 {
                     bIsAllBlockUsed = false;
-                    break;
-                }
-                else
-                {
-                    bIsAllBlockUsed = true;
-                }
-            }
-
-            for (int j = 0; j <= mB_F.Count - 1; j++)
-            {
-                if (mB_F[j].GetComponent<TextWithBlock>().BlockNumber == tN.Target_Number)
-                {
-                    if (!mB_F[j].GetComponent<MoveBlock>().bBlockIsHold)
-                    {
-                        bIsHitTarget = true;
-                        break;
-                    }
-                }
-                else
-                {
                     bIsHitTarget = false;
+                    TimeStop = true;
+                    bWin = true;
+                    instance.CurrentLevel++;
+                    Debug.Log(instance.CurrentLevel);
                 }
             }
-
-            // Check Win
-            if (bIsAllBlockUsed && bIsHitTarget)
+            else if(instance.GameMode == 1)
             {
-                TimeStop = true;
-                bWin = true;
+                // Training Mode
+                if (bIsAllBlockUsed && bIsHitTarget)
+                {
+                    bIsAllBlockUsed = false;
+                    bIsHitTarget = false;
+                    TimeStop = true;
+                    bWin = true;
+                }
             }
         }
-        
+    }
+
+    void GetBlock()
+    {
+        bH = FindObjectsOfType<BlockHolder>();
+        mB = FindObjectsOfType<MoveBlock>();
+
+        for (int i = 0; i <= bH.Length - 1; i++)
+        {
+            if (bH[i].transform.gameObject.tag == "Block_Holder")
+            {
+                bH_Calculate.Add(bH[i]);
+            }
+        }
+
+        for (int j = 0; j <= mB.Length - 1; j++)
+        {
+            if (mB[j].transform.gameObject.tag == "Block_F")
+            {
+                mB_F.Add(mB[j]);
+            }
+        }
+
+        bIsDone = true;
+    }
+
+    void CheckBlock()
+    {
+        for (int i = 0; i <= bH_Calculate.Count - 1; i++)
+        {
+            if (bH_Calculate[i].CurrentBlockNumber <= 0)
+            {
+                bIsAllBlockUsed = false;
+                break;
+            }
+            else
+            {
+                bIsAllBlockUsed = true;
+            }
+        }
+
+        for (int j = 0; j <= mB_F.Count - 1; j++)
+        {
+            if (mB_F[j].GetComponent<TextWithBlock>().BlockNumber == tN.Target_Number)
+            {
+                if (!mB_F[j].GetComponent<MoveBlock>().bBlockIsHold)
+                {
+                    bIsHitTarget = true;
+                    break;
+                }
+            }
+            else
+            {
+                bIsHitTarget = false;
+            }
+        }
     }
 }

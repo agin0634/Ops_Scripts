@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public int GameMode;
     public int Difficulty = 4;
 
+    public int CurrentLevel = 1;
+
 	void Awake ()
     {
 		if(instance == null)

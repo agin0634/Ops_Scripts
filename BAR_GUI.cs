@@ -24,7 +24,12 @@ public class BAR_GUI : MonoBehaviour {
         {
             Time_Text.text = "--:--";
         }
-        if(instance.GameMode == 1)
+
+        if(instance.GameMode == 0)
+        {
+            Level_Text.text = instance.CurrentLevel.ToString();
+        }
+        else if(instance.GameMode == 1)
         {
             Level_Text.text = "--";
         }
