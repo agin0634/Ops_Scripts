@@ -10,6 +10,7 @@ public class Pause_Game : MonoBehaviour {
     public Animator Win_GUI_Anim;
     public Animator Settings_GUI_Anim;
 
+    public GameManager instance;
     public GameObject Pause_UI;
     public MainGameManager GameManager;
 
@@ -17,10 +18,11 @@ public class Pause_Game : MonoBehaviour {
     private bool bIsRestart = false;
     private bool bIsExit = false;
     private bool bIsSettings = false;
+    private bool bIsPaused = false;
 
     void Start()
     {
-
+        instance = FindObjectOfType<GameManager>();
     }
 
     void Update()
@@ -38,6 +40,15 @@ public class Pause_Game : MonoBehaviour {
             {
                 SceneManager.LoadScene("MainMenu");
             }
+        }
+
+        if (bIsPaused)
+        {
+            if (!GameManager.TimeStop && !bIsSettings)
+            {
+                ShowPauseUI();
+            }
+            bIsPaused = false;
         }
     }
 
@@ -82,12 +93,24 @@ public class Pause_Game : MonoBehaviour {
     {
         bIsRestart = true;
         HidePauseUI();
+
+        if (instance.GameMode == 0)
+        {
+            GameManager.ResetChallengeData();
+            // TODO Waring ui
+        }
     }
 
     public void Home()
     {
         bIsExit = true;
         HidePauseUI();
+
+        if(instance.GameMode == 0)
+        {
+            GameManager.ResetChallengeData();
+            // TODO Waring ui
+        }
     }
 
     public void Settings()
@@ -103,6 +126,11 @@ public class Pause_Game : MonoBehaviour {
         Settings_GUI_Anim.SetBool("SettingPressed", false);
         Win_GUI_Anim.SetBool("Start", false);
         Pause_UI.gameObject.SetActive(true);
+    }
+
+    void OnApplicationPause(bool pauseStatus)
+    {
+        bIsPaused = true;
     }
 
 }
