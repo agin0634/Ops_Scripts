@@ -68,7 +68,6 @@ public class MainGameManager : MonoBehaviour {
 
                     if (instance.Difficulty == 5)
                     {
-                        //TODO Final Win
                         bWin = true;
                         bChallengeWin = true;
                         ResetChallengeData();

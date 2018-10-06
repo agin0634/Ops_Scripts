@@ -20,7 +20,7 @@ public class AudioPlayer : MonoBehaviour {
         {
             Destroy(gameObject);
         }
-
+        
         if (aS)
         {
 
