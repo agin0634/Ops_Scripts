@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class MoveBlock : MonoBehaviour {
+public class MoveBlock : MonoBehaviour, IDragHandler, IEndDragHandler
+{
 
     public float Distance = 10;
     public bool bIsBlock_F = false;
@@ -43,12 +45,12 @@ public class MoveBlock : MonoBehaviour {
                 transform.position = NearestBlock.transform.position;
                 NearestBlock.CurrentBlockNumber = TwB.BlockNumber;
             }
-           
-            if(NearestBlock.tag == "Block_Holder")
+
+            if (NearestBlock.tag == "Block_Holder")
             {
                 bBlockIsHold = true;
             }
-            if(NearestBlock.tag == "Block_Holder_R" && !bIsFirstHolder)
+            if (NearestBlock.tag == "Block_Holder_R" && !bIsFirstHolder)
             {
                 FirstBlock = NearestBlock;
                 bIsFirstHolder = true;
@@ -59,7 +61,7 @@ public class MoveBlock : MonoBehaviour {
         {
             DetachBlock();
         }
-  
+
     }
 
     void OnTriggerEnter2D(Collider2D Col)
@@ -114,10 +116,10 @@ public class MoveBlock : MonoBehaviour {
         float NearestDistance = 100000;
         BlockHolder nearestBlock = null;
 
-        for(int i = 0; i <= NearsetObject.Count - 1; i++)
+        for (int i = 0; i <= NearsetObject.Count - 1; i++)
         {
             float CurrentDistance = Vector3.Distance(NearsetObject[i].transform.position, transform.position);
-            if( CurrentDistance < NearestDistance)
+            if (CurrentDistance < NearestDistance)
             {
                 NearestDistance = CurrentDistance;
                 nearestBlock = NearsetObject[i].GetComponent<BlockHolder>();
@@ -126,6 +128,8 @@ public class MoveBlock : MonoBehaviour {
         return nearestBlock;
     }
 
+
+    /* Normal Block */
     void OnMouseDown()
     {
         bIsDragging = true;
@@ -143,6 +147,23 @@ public class MoveBlock : MonoBehaviour {
             Vector3 MousePostion = new Vector3(Input.mousePosition.x, Input.mousePosition.y, Distance);
             Vector3 BlockPostion = Camera.main.ScreenToWorldPoint(MousePostion);
             transform.position = BlockPostion;
-        }     
+        }
     }
+
+    /* Block GUI */
+    public void OnDrag(PointerEventData eventData)
+    {
+        if (bCanbeDrag)
+        {
+            bIsDragging = true;
+            Vector3 BlockPostion = Input.mousePosition;
+            transform.position = BlockPostion;
+        }
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        bIsDragging = false;
+    }
+
 }

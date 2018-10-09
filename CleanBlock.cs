@@ -34,4 +34,13 @@ public class CleanBlock : MonoBehaviour {
             mB_R[j].ClearBlock();
         }
     }
+
+    public void Clean()
+    {
+        for (int j = 0; j <= mB_R.Count - 1; j++)
+        {
+            mB_R[j].ClearBlock();
+        }
+    }
+
 }

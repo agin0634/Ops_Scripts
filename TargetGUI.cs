@@ -10,7 +10,8 @@ public class TargetGUI : MonoBehaviour {
 
     public Animator TargetCircle_Anim;
     public Animator Target_GUI_Anim;
-    public Animator Camera_Anim;
+    public Animator MainGame_Anim;
+    //public Animator Camera_Anim;
     public Animator BAR_GUI_Anim;
 
     public GameObject Go_Button;
@@ -46,7 +47,8 @@ public class TargetGUI : MonoBehaviour {
     public void Go()
     {
         Target_GUI_Anim.SetBool("Start", true);
-        Camera_Anim.SetBool("Start", true);
+        MainGame_Anim.SetBool("Start", true);
+        //Camera_Anim.SetBool("Start", true);
         BAR_GUI_Anim.SetBool("Start", true);
         GameManager.TimeStop = false;
     }

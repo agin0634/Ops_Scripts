@@ -17,7 +17,7 @@ public class TextWithBlock : MonoBehaviour {
         {
             Camera_Anim = FindObjectOfType<Camera>().GetComponent<Animator>();
         }
-
+        
         NumberText.GetComponent<Text>().enabled = false;
         
     }
@@ -30,10 +30,9 @@ public class TextWithBlock : MonoBehaviour {
             NumberText.GetComponent<Text>().enabled = true;
             bIsDone = true;
         }
-
-
-        Vector3 NumberPosition = Camera.main.WorldToScreenPoint(this.transform.position);
-        NumberText.transform.position = NumberPosition;
+        
+        //Vector3 NumberPosition = Camera.main.WorldToScreenPoint(this.transform.position);
+        //NumberText.transform.position = NumberPosition;
 
         if (BlockNumber >= 0)
         {

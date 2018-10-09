@@ -9,14 +9,17 @@ public class BlockManager : MonoBehaviour {
     public GameObject[] Equation;
     public MainGameManager GameManager;
     
-	void Start () {
-        if (GameManager)
+	void Start ()
+    {
+        if (!GameManager)
         {
-            Difficulty = GameManager.GameDifficulty;
+            GameManager = FindObjectOfType<MainGameManager>();
         }
+        
+        Difficulty = GameManager.GameDifficulty;
 
         // Spawn Block_Movable
-		for (int i = 0; i <= Difficulty - 1 ; i++)
+        for (int i = 0; i <= Difficulty - 1 ; i++)
         {
             Block_Movable[i].SetActive(true);
         }

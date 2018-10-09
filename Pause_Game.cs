@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 public class Pause_Game : MonoBehaviour {
 
     public Animator BAR_GUI_Anim;
-    public Animator Camera_Anim;
+    //public Animator Camera_Anim;
+    public Animator MainGame_Anim;
     public Animator Win_GUI_Anim;
     public Animator Settings_GUI_Anim;
 
@@ -56,11 +57,12 @@ public class Pause_Game : MonoBehaviour {
     {
         ShowPauseUI();
     }
-
+    
     public void ShowPauseUI()
     {
         BAR_GUI_Anim.SetBool("Start", false);
-        Camera_Anim.SetBool("Start", false);
+        MainGame_Anim.SetBool("Start", false);
+        //Camera_Anim.SetBool("Start", false);
         Win_GUI_Anim.SetBool("Start", false);
         Pause_UI.gameObject.SetActive(true);
         GameManager.TimeStop = true;
@@ -77,7 +79,8 @@ public class Pause_Game : MonoBehaviour {
         else
         {
             BAR_GUI_Anim.SetBool("Start", true);
-            Camera_Anim.SetBool("Start", true);
+            MainGame_Anim.SetBool("Start", true);
+            //Camera_Anim.SetBool("Start", true);
             Win_GUI_Anim.SetBool("Start", true);
             bIsAnimStop = false;
             GameManager.TimeStop = false;

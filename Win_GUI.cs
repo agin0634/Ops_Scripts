@@ -10,8 +10,9 @@ public class Win_GUI : MonoBehaviour {
     public MainGameManager GameManager;
 
     public Animator Win_GUI_Anim;
-    public Animator Camera_Anim;
+    //public Animator Camera_Anim;
     public Animator BAR_GUI_Anim;
+    public Animator MainGame_Anim;
 
     public GameObject gO;
     public GameManager instance;
@@ -56,7 +57,8 @@ public class Win_GUI : MonoBehaviour {
         {
             gO.SetActive(true);
             Win_GUI_Anim.SetBool("Start", false);
-            Camera_Anim.SetBool("Start", false);
+            //Camera_Anim.SetBool("Start", false);
+            MainGame_Anim.SetBool("Start", false);
             BAR_GUI_Anim.SetBool("Start", false);
 
             if (GameManager.bChallengeWin)

@@ -10,9 +10,11 @@ public class SpawnMoveBlock : MonoBehaviour {
     private bool SpawnDone = false;
     public TargetNumber TN;
     public int BlockCount;
+    public GameObject Parent;
 
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
         if (GameManager)
         {
             TN = GameManager.GetComponent<TargetNumber>();
@@ -20,7 +22,9 @@ public class SpawnMoveBlock : MonoBehaviour {
 
             for(int i = 0; i < BlockCount; i++)
             {
-                Instantiate(BlockPrefab, BM.Block_Movable[i].transform.position, BM.Block_Movable[i].transform.rotation);
+                GameObject gO = Instantiate(BlockPrefab, BM.Block_Movable[i].transform.position, BM.Block_Movable[i].transform.rotation);
+                gO.transform.SetParent(Parent.transform);
+                gO.transform.localScale = new Vector3(1, 1, 1);
             }
 
             SpawnDone = true;

@@ -9,6 +9,7 @@ public class CalculateBlock : MonoBehaviour {
     public Ops_Circle Ops;
     public int F_Number = 1;
     public GameObject Block_F_Prefab;
+    public GameObject Parent;
     public GameObject CurrentBlock_F;
 
 	// Use this for initialization
@@ -44,8 +45,10 @@ public class CalculateBlock : MonoBehaviour {
 
     GameObject SpawnBlock_F()
     {
-        GameObject go = Instantiate(Block_F_Prefab, transform.position, transform.rotation);
-        return go;
+        GameObject gO = Instantiate(Block_F_Prefab, transform.position, transform.rotation);
+        gO.transform.SetParent(Parent.transform);
+        gO.transform.localScale = new Vector3(1, 1, 1);
+        return gO;
     }
 
     int Calculate (int A , int B , int ops_number)

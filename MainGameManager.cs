@@ -6,7 +6,7 @@ public class MainGameManager : MonoBehaviour {
 
     public int GameDifficulty = 4;
     public GameManager instance;
-    public TargetNumber tN;
+    public TargetNumber tN { get { return GetComponent<TargetNumber>(); } }
 
     private BlockHolder[] bH;
     public List<BlockHolder> bH_Calculate;
@@ -32,10 +32,7 @@ public class MainGameManager : MonoBehaviour {
     
 	void Start ()
     {
-        if (!tN)
-        {
-            tN = gameObject.GetComponent<TargetNumber>();
-        }
+        
     }
 
     void Update()
