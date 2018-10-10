@@ -5,15 +5,24 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
 
+    private GameManager instance;
+
     private bool bIsButtonPressed = false;
     private bool bAnimationPlaying = false;
     private bool bCanRunProgress = true;
     private bool bIsFirstTime = true;
+    private bool bIsChallengeStart = false;
     public float AnimSpeed = 1.0f;
     public Animator ChallengeAmin;
     public Animator TrainingAmin;
     public Animator SettingsAmin;
     public Animator SubMenuAmin;
+    public Animator GameLogoAnim;
+
+    void Start()
+    {
+        instance = FindObjectOfType<GameManager>();
+    }
 
     void Update()
     {
@@ -29,6 +38,12 @@ public class MainMenu : MonoBehaviour {
                     SettingsAmin.speed = AnimSpeed;
                     SubMenuAmin.speed = AnimSpeed;
                 }
+
+                if (bIsChallengeStart)
+                {
+                    GameLogoAnim.SetBool("ChallengeStart", true);
+                }
+
                 ChallengeAmin.SetBool("ButtonPressed", true);
                 TrainingAmin.SetBool("ButtonPressed", true);
                 SettingsAmin.SetBool("ButtonPressed", true);
@@ -52,7 +67,23 @@ public class MainMenu : MonoBehaviour {
                 {
                     SetSubMenuActive();
                 }
-            }        
+            }
+        }
+
+        if (bIsChallengeStart && GameLogoAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 &&
+            GameLogoAnim.GetCurrentAnimatorStateInfo(0).IsName("GameLogo_Challenge"))
+        {
+            if (instance.CheckSaveFile())
+            {
+                instance.LoadGame();
+                Debug.Log("Save exist");
+                SceneManager.LoadScene("ChallengeScene");
+            }
+            else
+            {
+                SceneManager.LoadScene("ChallengeScene");
+                Debug.Log("New");
+            }
         }
     }
 
@@ -92,6 +123,16 @@ public class MainMenu : MonoBehaviour {
             SettingsAmin.SetBool("ButtonPressed", false);
             SubMenuAmin.SetBool("ButtonPressed", false);
         }
+    }
+
+    public void ChallengeStart()
+    {
+        if (!bAnimationPlaying)
+        {
+            bIsButtonPressed = true;
+            bIsChallengeStart = true;
+        }
+        
     }
 
     private void SetSubMenuActive()

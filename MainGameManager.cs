@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 public class MainGameManager : MonoBehaviour {
@@ -154,5 +156,48 @@ public class MainGameManager : MonoBehaviour {
         instance.CurrentLevel = 1;
         instance.CurrentTime = 0f;
     }
-    
+
+    void OnApplicationQuit()
+    {
+        if(instance.GameMode == 0)
+        {
+            // TODO Save
+            instance.SaveGame();
+            Debug.Log("Save!!!");
+        }
+    }
+
+    /*
+    public void SaveGame()
+    {
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
+
+        SaveGame Save = new SaveGame();
+        Save.Level = instance.CurrentLevel;
+        Save.Timer = instance.CurrentTime;
+
+        bf.Serialize(file, Save);
+        file.Close();
+    }
+
+    public void LoadGame()
+    {
+        if(File.Exists(Application.persistentDataPath + "/gamesave.save"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
+            SaveGame Save = (SaveGame)bf.Deserialize(file);
+            file.Close();
+
+            instance.CurrentLevel = Save.Level;
+            instance.CurrentTime = Save.Timer;
+        }
+        else
+        {
+            Debug.Log("No game saved!");
+        }
+    }
+    */
+
 }

@@ -100,6 +100,7 @@ public class Pause_Game : MonoBehaviour {
         if (instance.GameMode == 0)
         {
             GameManager.ResetChallengeData();
+            instance.DeleteFile();
         }
     }
 
@@ -107,7 +108,8 @@ public class Pause_Game : MonoBehaviour {
     {
         bIsExit = true;
         HidePauseUI();
-        GameManager.ResetChallengeData();
+        instance.SaveGame();
+        //GameManager.ResetChallengeData();
     }
 
     public void Settings()
