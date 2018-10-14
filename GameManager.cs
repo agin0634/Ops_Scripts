@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         {
             File.Delete(Application.persistentDataPath + "/gamesave.save");
 
-            UnityEditor.AssetDatabase.Refresh();
+            //UnityEditor.AssetDatabase.Refresh();
         }
         else
         {

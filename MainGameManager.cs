@@ -65,7 +65,7 @@ public class MainGameManager : MonoBehaviour {
                     TimeStop = true;
                     instance.CurrentTime = FindObjectOfType<Timer>().timer_f;
 
-                    if (instance.Difficulty == 5)
+                    if (instance.Difficulty == 10)
                     {
                         bWin = true;
                         bChallengeWin = true;

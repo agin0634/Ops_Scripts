@@ -5,21 +5,18 @@ using UnityEngine;
 public class SFXPlayer : MonoBehaviour {
 
     public int bIsToggleOn;
-    
+    public float SFX_Volume;
+        
     void Start ()
     {
-
-        bIsToggleOn = PlayerPrefs.GetInt("Settings_SFX");
-
         if (bIsToggleOn == 0)
         {
-            // off
+           SFX_Volume = 0;
         }
         else
         {
-            // on
+           SFX_Volume = 0.5f;
         }
-
     }
 	
 	void Update ()
@@ -36,11 +33,11 @@ public class SFXPlayer : MonoBehaviour {
     {
         if (bIsToggleOn == 0)
         {
-            // off
+            SFX_Volume = 0;
         }
         else
         {
-            // on
+            SFX_Volume = 0.5f;
         }
     }
 }

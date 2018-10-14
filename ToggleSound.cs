@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ClickSound : MonoBehaviour {
+public class ToggleSound : MonoBehaviour {
 
     public AudioClip sound;
 
-    private Button button { get { return GetComponent<Button>(); } }
+    private Toggle toggle  { get { return GetComponent<Toggle>(); } }
     private AudioSource aS { get { return GetComponent<AudioSource>(); } }
     private SFXPlayer sfx;
-
+    
     void Start ()
     {
         sfx = FindObjectOfType<SFXPlayer>();
@@ -18,12 +18,12 @@ public class ClickSound : MonoBehaviour {
         aS.clip = sound;
         aS.playOnAwake = false;
         aS.volume = sfx.SFX_Volume;
-        button.onClick.AddListener(() => PlaySound());
-	}
-	
-	void PlaySound()
+        toggle.onValueChanged.AddListener(delegate { PlaySound(); });
+    }
+
+    void PlaySound()
     {
-        aS.volume = sfx.SFX_Volume;
         aS.PlayOneShot(sound);
+        aS.volume = sfx.SFX_Volume;
     }
 }
