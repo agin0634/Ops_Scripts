@@ -36,10 +36,30 @@ public class TextWithBlock : MonoBehaviour {
 
         if (BlockNumber >= 0)
         {
-            NumberText.text = BlockNumber.ToString();
+            if ( BlockNumber <= 999)
+            {
+                NumberText.fontSize = 52;
+                NumberText.text = BlockNumber.ToString();
+            }            
+            else if(BlockNumber > 999 && BlockNumber <= 9999)
+            {
+                NumberText.fontSize = 48;
+                NumberText.text = BlockNumber.ToString();
+            }
+            else if(BlockNumber > 9999)
+            {
+                NumberText.fontSize = 42;
+                NumberText.text = BlockNumber.ToString();
+            }
+            else
+            {
+                NumberText.fontSize = 48;
+                NumberText.text = "Oops";
+            }
         }
         else
         {
+            NumberText.fontSize = 48;
             NumberText.text = "Oops";
         }
     }
