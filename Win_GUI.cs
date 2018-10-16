@@ -107,8 +107,20 @@ public class Win_GUI : MonoBehaviour {
         Win_GUI_Anim.SetBool("Start", true);
         bLoadScene = true;
         bIsQuit = true;
-
-        GameManager.ResetChallengeData();
+        
+        if(instance.GameMode == 0)
+        {
+            //GameManager.ResetChallengeData();
+           
+            if (GameManager.bChallengeWin)
+            {
+                instance.DeleteFile();
+            }
+            else
+            {
+                instance.SaveGame();
+            }
+        }
     }
 
     public void SwitchWinTitle(bool winStatus)

@@ -46,9 +46,9 @@ public class TextWithBlock : MonoBehaviour {
                 NumberText.fontSize = 48;
                 NumberText.text = BlockNumber.ToString();
             }
-            else if(BlockNumber > 9999)
+            else if(BlockNumber > 9999 && BlockNumber <= 99999)
             {
-                NumberText.fontSize = 42;
+                NumberText.fontSize = 40;
                 NumberText.text = BlockNumber.ToString();
             }
             else

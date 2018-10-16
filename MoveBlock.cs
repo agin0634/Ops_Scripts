@@ -89,9 +89,27 @@ public class MoveBlock : MonoBehaviour, IDragHandler, IEndDragHandler
         }
     }
 
-    void OnTriggerExit2D()
+    void OnTriggerExit2D(Collider2D Col)
     {
-        NearsetObject.Clear();
+        if (bIsBlock_F)
+        {
+            if (Col.tag == "Block_Holder")
+            {
+                NearsetObject.Clear();
+            }
+            /*
+            if (Col.tag == "Block_Holder_F")
+            {
+                if (Col.GetComponent<CalculateBlock>().CurrentBlock_F == this.gameObject)
+                {
+                    NearsetObject.Clear();
+                }
+            }*/
+        }
+        else
+        {
+            NearsetObject.Clear();
+        }
     }
 
     public void DetachBlock()
