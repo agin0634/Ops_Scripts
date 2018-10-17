@@ -34,7 +34,7 @@ public class MainGameManager : MonoBehaviour {
     
 	void Start ()
     {
-        
+
     }
 
     void Update()
@@ -89,6 +89,27 @@ public class MainGameManager : MonoBehaviour {
                     bIsHitTarget = false;
                     TimeStop = true;
                     bWin = true;
+                }
+            }
+            else if (instance.GameMode == 2)
+            {
+                // Tutorial Mode
+                if(bIsAllBlockUsed && bIsHitTarget)
+                {
+                    // TODO Win
+                    bIsAllBlockUsed = false;
+                    bIsHitTarget = false;
+                    TimeStop = true;
+
+                    if (instance.Difficulty == 4)
+                    {
+                        bWin = true;
+                    }
+                    else
+                    {
+                        bWin = true;
+                        instance.Difficulty = 4;
+                    }
                 }
             }
         }
@@ -166,38 +187,4 @@ public class MainGameManager : MonoBehaviour {
             Debug.Log("Save!!!");
         }
     }
-
-    /*
-    public void SaveGame()
-    {
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/gamesave.save");
-
-        SaveGame Save = new SaveGame();
-        Save.Level = instance.CurrentLevel;
-        Save.Timer = instance.CurrentTime;
-
-        bf.Serialize(file, Save);
-        file.Close();
-    }
-
-    public void LoadGame()
-    {
-        if(File.Exists(Application.persistentDataPath + "/gamesave.save"))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/gamesave.save", FileMode.Open);
-            SaveGame Save = (SaveGame)bf.Deserialize(file);
-            file.Close();
-
-            instance.CurrentLevel = Save.Level;
-            instance.CurrentTime = Save.Timer;
-        }
-        else
-        {
-            Debug.Log("No game saved!");
-        }
-    }
-    */
-
 }
