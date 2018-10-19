@@ -83,7 +83,14 @@ public class Win_GUI : MonoBehaviour {
                 }
                 else
                 {
-                    SceneManager.LoadScene("ChallengeScene");
+                    if(instance.GameMode == 2)
+                    {
+                        SceneManager.LoadScene("TutorialScene");
+                    }
+                    else
+                    {
+                        SceneManager.LoadScene("ChallengeScene");
+                    }
                 }
                 bLoadScene = false;
             }

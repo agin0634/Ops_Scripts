@@ -193,17 +193,9 @@ public class TargetNumber : MonoBehaviour
             B = Ref_Numbers_Temp[x];
             Ref_Numbers_Temp.RemoveAt(x);
 
-            if(Level == 1)
-            {
-                F = A + B;
-                Ref_Numbers_Temp.Add(F);
-                Level++;
-            }
-            else
-            {
-                F = A * B;
-                Ref_Numbers_Temp.Add(F);
-            }
+            F = A + B;
+            Ref_Numbers_Temp.Add(F);
+
         }
 
         Target_Number = Ref_Numbers_Temp[0];
