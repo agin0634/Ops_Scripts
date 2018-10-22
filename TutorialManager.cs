@@ -19,22 +19,19 @@ public class TutorialManager : MonoBehaviour {
 	
 	void Update ()
     {
-		if(bH[0].CurrentBlockNumber > 0 && bH[1].CurrentBlockNumber > 0)
+        if (!bIsSwitch)
         {
-            bIsSwitch = true;
             SwitchTips();
         }
-
-        
 	}
-    
+        
     void SwitchTips()
     {
-        if (bIsSwitch)
+        if (bH[0].CurrentBlockNumber > 0 && bH[1].CurrentBlockNumber > 0)
         {
             Tips++;
             Tips_Function(Tips);
-            bIsSwitch = false;
+            bIsSwitch = true;
         }
     }
 
