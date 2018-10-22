@@ -73,6 +73,7 @@ public class MainMenu : MonoBehaviour {
         if (bIsChallengeStart && GameLogoAnim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 &&
             GameLogoAnim.GetCurrentAnimatorStateInfo(0).IsName("GameLogo_Challenge"))
         {
+            instance.GameMode = 0;
             if (instance.CheckSaveFile())
             {
                 instance.LoadGame();
