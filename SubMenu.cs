@@ -51,23 +51,12 @@ public class SubMenu : MonoBehaviour {
             PlayerPrefs.SetInt("Settings_BGM", 1);
             Settings_DarkMode_Toggle.GetComponent<ToggleCheck>().isOn = 0;
             PlayerPrefs.SetInt("Settings_DarkMode", 0);
-            PlayerPrefs.SetInt("IsNotFirstTime", 1);
             
             PlayerPrefs.Save();
             Debug.Log("load");
         }
     }
     
-	void Start ()
-    {
-        
-    }
-	
-	void Update ()
-    {
-		
-	}
-
     public void Training_Timer_Change_Value()
     {
         switch (Training_Timer_Toggle.GetComponent<ToggleCheck>().isOn)

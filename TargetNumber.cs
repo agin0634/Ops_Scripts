@@ -179,8 +179,6 @@ public class TargetNumber : MonoBehaviour
 
     void Tutorial_Lv2()
     {
-        int Level = 1;
-
         for (int i = 1; i <= Difficulty - 1; i++)
         {
             int A; int B; int F;
@@ -192,10 +190,10 @@ public class TargetNumber : MonoBehaviour
             x = Random.Range(0, Ref_Numbers_Temp.Count - 1);
             B = Ref_Numbers_Temp[x];
             Ref_Numbers_Temp.RemoveAt(x);
-
+            
             F = A + B;
             Ref_Numbers_Temp.Add(F);
-
+            
         }
 
         Target_Number = Ref_Numbers_Temp[0];

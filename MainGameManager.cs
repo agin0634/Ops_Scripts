@@ -21,6 +21,7 @@ public class MainGameManager : MonoBehaviour {
     public bool TimeStop = true;
     public bool bWin = false;
     public bool bChallengeWin = false;
+    public bool bTutoialWin = false;
     public bool bIsNewBest = false;
     
     void Awake()
@@ -70,7 +71,6 @@ public class MainGameManager : MonoBehaviour {
                         bWin = true;
                         bChallengeWin = true;
                         ResetChallengeData();
-                        Debug.Log("Challenge Done");
                     }
                     else
                     {
@@ -104,6 +104,7 @@ public class MainGameManager : MonoBehaviour {
                     if (instance.Difficulty == 4)
                     {
                         bWin = true;
+                        bTutoialWin = true;
                     }
                     else
                     {

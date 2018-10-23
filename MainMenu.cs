@@ -133,7 +133,6 @@ public class MainMenu : MonoBehaviour {
             bIsButtonPressed = true;
             bIsChallengeStart = true;
         }
-        
     }
 
     private void SetSubMenuActive()

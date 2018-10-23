@@ -67,7 +67,6 @@ public class Timer : MonoBehaviour {
     void CheckBestTime()
     {
         float timer_best = PlayerPrefs.GetFloat("Best_Time", 1000000);
-        Debug.Log(timer_best);
 
         if (timer_f < timer_best)
         {

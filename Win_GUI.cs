@@ -85,7 +85,22 @@ public class Win_GUI : MonoBehaviour {
                 {
                     if(instance.GameMode == 2)
                     {
-                        SceneManager.LoadScene("TutorialScene");
+                        if (GameManager.bTutoialWin)
+                        {
+                            if (PlayerPrefs.GetInt("IsNotFirstTime") != 1)
+                            {
+                                PlayerPrefs.SetInt("IsNotFirstTime", 1);
+                                SceneManager.LoadScene("MainMenu");
+                            }
+                            else
+                            {
+                                SceneManager.LoadScene("MainMenu");
+                            }
+                        }
+                        else
+                        {
+                            SceneManager.LoadScene("TutorialScene");
+                        }
                     }
                     else
                     {

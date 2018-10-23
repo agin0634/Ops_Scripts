@@ -11,7 +11,7 @@ public class TrainingMenu : MonoBehaviour {
     public GameManager instance;
     public Animator SubMenuAnim;
     public Animator GameLogoAnim;
-
+    
     private bool bIsAnimExit = false;
 
     void Start ()
@@ -66,6 +66,4 @@ public class TrainingMenu : MonoBehaviour {
         bIsAnimExit = true;
         instance.GameMode = 1;
     }
-    
-
 }
