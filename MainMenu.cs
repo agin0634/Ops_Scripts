@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour {
 
     private GameManager instance;
+    private AdmodManager admodManager;
 
     private bool bIsButtonPressed = false;
     private bool bAnimationPlaying = false;
@@ -22,6 +23,9 @@ public class MainMenu : MonoBehaviour {
     void Start()
     {
         instance = FindObjectOfType<GameManager>();
+        admodManager = FindObjectOfType<AdmodManager>();
+
+        admodManager.ShowBanner();
     }
 
     void Update()

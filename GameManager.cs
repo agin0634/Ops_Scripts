@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
         SaveGame Save = new SaveGame();
         Save.Level = CurrentLevel;
         Save.Timer = CurrentTime;
+        Save.Difficulty = Difficulty;
 
         Save.SaveExist = true;
 
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
             
             CurrentLevel = Save.Level;
             CurrentTime = Save.Timer;
+            Difficulty = Save.Difficulty;
         }
         else
         {

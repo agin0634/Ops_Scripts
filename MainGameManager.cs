@@ -8,6 +8,7 @@ public class MainGameManager : MonoBehaviour {
 
     public int GameDifficulty = 4;
     public GameManager instance;
+    public AdmodManager admodManager;
     public TargetNumber tN { get { return GetComponent<TargetNumber>(); } }
 
     private BlockHolder[] bH;
@@ -27,6 +28,7 @@ public class MainGameManager : MonoBehaviour {
     void Awake()
     {
         instance = FindObjectOfType<GameManager>();
+        admodManager = FindObjectOfType<AdmodManager>();
         if (instance)
         {
             GameDifficulty = instance.Difficulty;
@@ -35,7 +37,7 @@ public class MainGameManager : MonoBehaviour {
     
 	void Start ()
     {
-
+        admodManager.HideBanner();
     }
 
     void Update()
