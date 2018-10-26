@@ -11,16 +11,17 @@ public class AdmodManager : MonoBehaviour {
     public static AdmodManager ins;
     public bool bIsMainMenu = false;
     
-    //[SerializeField] private string appID = "ca-app-pub-2870518963336798~7167379783";
+    [SerializeField] private string appID = "ca-app-pub-2870518963336798~7167379783";
     [SerializeField] private string bannerID = "ca-app-pub-2870518963336798/2754202498";
 
     void Awake()
     {
+        MobileAds.Initialize(appID);
+
         if (ins == null)
         {
             ins = this;
             DontDestroyOnLoad(gameObject);
-
         }
         else if (ins != this)
         {

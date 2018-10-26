@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 
     public int GameMode;
     public int Difficulty = 4;
+    public int Calulation_Diff = 0;
     public int CurrentLevel = 1;
     public float CurrentTime = 0f;
         
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
         Save.Level = CurrentLevel;
         Save.Timer = CurrentTime;
         Save.Difficulty = Difficulty;
+        Save.Calculation_Diff = Calulation_Diff;
 
         Save.SaveExist = true;
 
@@ -54,6 +56,7 @@ public class GameManager : MonoBehaviour
             CurrentLevel = Save.Level;
             CurrentTime = Save.Timer;
             Difficulty = Save.Difficulty;
+            Calulation_Diff = Save.Calculation_Diff;
         }
         else
         {

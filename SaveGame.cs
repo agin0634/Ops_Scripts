@@ -10,6 +10,7 @@ public class SaveGame
     public int Level;
     public float Timer;
     public int Difficulty;
+    public int Calculation_Diff;
 
     public List<int> Ref_Numbers;
     public int Target_Number;

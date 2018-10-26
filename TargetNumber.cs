@@ -5,7 +5,7 @@ using UnityEngine;
 public class TargetNumber : MonoBehaviour
 {
 
-    private CalculationMethod cm;
+    private CalculationMethod cm { get { return GetComponent<CalculationMethod>(); } }
     private int[] NumberPool = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
     public bool bIsTutorial = false;
     public int Difficulty = 4;
@@ -42,85 +42,25 @@ public class TargetNumber : MonoBehaviour
             B = Ref_Numbers_Temp[x];
             Ref_Numbers_Temp.RemoveAt(x);
             
-            if (A != B)
+            switch (instance.Calulation_Diff)
             {
-                if (A % B == 0)
-                {
-                    Debug.Log("**A / B");
-                    F = A / B;
+                case 0:
+                    F =cm.easy_Calculation(A, B);
                     Ref_Numbers_Temp.Add(F);
-                }
-                else if (A > B)
-                {
-                    Debug.Log("**A - B");
-                    F = A - B;
+                    break;
+                case 1:
+                    F = cm.medium_Calculation(A, B);
                     Ref_Numbers_Temp.Add(F);
-                }
-                else if (A + B <= 10)
-                {
-                    Debug.Log("**A * B");
-                    F = A * B;
+                    break;
+                case 2:
+                    F = cm.Hard_Calculation(A, B);
                     Ref_Numbers_Temp.Add(F);
-                }
-                else
-                {
-                    Debug.Log("**A + B");
-                    F = A + B;
-                    Ref_Numbers_Temp.Add(F);
-                }
+                    break;
+                case 3:
+                    // TODO insane cal
+                    break;
+            }
 
-            }
-            else
-            {
-                if (A + B >= 10)
-                {
-                    // + * /
-                    // [5,5]、[6,6]、[7,7]、[8,8]、[9,9]
-                    int y = Random.Range(1, 3);
-                    if (y == 1)
-                    {
-                        Debug.Log("**A + B");
-                        F = A + B;
-                        Ref_Numbers_Temp.Add(F);
-                    }
-                    else if (y == 2)
-                    {
-                        Debug.Log("**A * B");
-                        F = A * B;
-                        Ref_Numbers_Temp.Add(F);
-                    }
-                    else
-                    {
-                        Debug.Log("**A / B");
-                        F = A / B;
-                        Ref_Numbers_Temp.Add(F);
-                    }
-                }
-                else
-                {
-                    // * + /
-                    // [1,1]、[2,2]、[3,3]、[4,4]
-                    int y = Random.Range(1, 3);
-                    if (y == 1)
-                    {
-                        Debug.Log("**A + B");
-                        F = A + B;
-                        Ref_Numbers_Temp.Add(F);
-                    }
-                    else if (y == 2)
-                    {
-                        Debug.Log("**A * B");
-                        F = A * B;
-                        Ref_Numbers_Temp.Add(F);
-                    }
-                    else
-                    {
-                        Debug.Log("**A / B");
-                        F = A / B;
-                        Ref_Numbers_Temp.Add(F);
-                    }
-                }
-            }
         }
 
         Target_Number = Ref_Numbers_Temp[0];
