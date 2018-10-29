@@ -46,11 +46,11 @@ public class MoveBlock : MonoBehaviour, IDragHandler, IEndDragHandler
                 NearestBlock.CurrentBlockNumber = TwB.BlockNumber;
             }
 
-            if (NearestBlock.tag == "Block_Holder")
+            if (NearestBlock.CompareTag("Block_Holder"))
             {
                 bBlockIsHold = true;
             }
-            if (NearestBlock.tag == "Block_Holder_R" && !bIsFirstHolder)
+            if (NearestBlock.CompareTag("Block_Holder_R") && !bIsFirstHolder)
             {
                 FirstBlock = NearestBlock;
                 bIsFirstHolder = true;
@@ -68,11 +68,11 @@ public class MoveBlock : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         if (bIsBlock_F)
         {
-            if (Col.tag == "Block_Holder")
+            if (Col.CompareTag("Block_Holder"))
             {
                 NearsetObject.Add(Col);
             }
-            if (Col.tag == "Block_Holder_F")
+            if (Col.CompareTag("Block_Holder_F"))
             {
                 if (Col.GetComponent<CalculateBlock>().CurrentBlock_F == this.gameObject)
                 {
@@ -82,7 +82,7 @@ public class MoveBlock : MonoBehaviour, IDragHandler, IEndDragHandler
         }
         else
         {
-            if (Col.tag == "Block_Holder" || Col.tag == "Block_Holder_R")
+            if (Col.CompareTag("Block_Holder") || Col.CompareTag("Block_Holder_R"))
             {
                 NearsetObject.Add(Col);
             }
@@ -93,7 +93,7 @@ public class MoveBlock : MonoBehaviour, IDragHandler, IEndDragHandler
     {
         if (bIsBlock_F)
         {
-            if (Col.tag == "Block_Holder")
+            if (Col.CompareTag("Block_Holder"))
             {
                 NearsetObject.Clear();
             }

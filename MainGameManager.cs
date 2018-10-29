@@ -125,7 +125,7 @@ public class MainGameManager : MonoBehaviour {
 
         for (int i = 0; i <= bH.Length - 1; i++)
         {
-            if (bH[i].transform.gameObject.tag == "Block_Holder")
+            if (bH[i].transform.gameObject.CompareTag("Block_Holder"))
             {
                 bH_Calculate.Add(bH[i]);
             }
@@ -133,7 +133,7 @@ public class MainGameManager : MonoBehaviour {
 
         for (int j = 0; j <= mB.Length - 1; j++)
         {
-            if (mB[j].transform.gameObject.tag == "Block_F")
+            if (mB[j].transform.gameObject.CompareTag("Block_F"))
             {
                 mB_F.Add(mB[j]);
             }
