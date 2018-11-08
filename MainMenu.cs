@@ -14,10 +14,11 @@ public class MainMenu : MonoBehaviour {
     private bool bIsFirstTime = true;
     private bool bIsChallengeStart = false;
     public float AnimSpeed = 1.0f;
-    public Animator ChallengeAmin;
-    public Animator TrainingAmin;
-    public Animator SettingsAmin;
-    public Animator SubMenuAmin;
+    public Animator ChallengeAnim;
+    public Animator TrainingAnim;
+    public Animator SettingsAnim;
+    public Animator ToolBarAnim;
+    public Animator SubMenuAnim;
     public Animator GameLogoAnim;
 
     void Start()
@@ -37,10 +38,11 @@ public class MainMenu : MonoBehaviour {
                 if (bIsFirstTime)
                 {
                     bIsFirstTime = false;
-                    ChallengeAmin.speed = AnimSpeed;
-                    TrainingAmin.speed = AnimSpeed;
-                    SettingsAmin.speed = AnimSpeed;
-                    SubMenuAmin.speed = AnimSpeed;
+                    ChallengeAnim.speed = AnimSpeed;
+                    TrainingAnim.speed = AnimSpeed;
+                    SettingsAnim.speed = AnimSpeed;
+                    ToolBarAnim.speed = AnimSpeed;
+                    SubMenuAnim.speed = AnimSpeed;
                 }
 
                 if (bIsChallengeStart)
@@ -48,15 +50,16 @@ public class MainMenu : MonoBehaviour {
                     GameLogoAnim.SetBool("ChallengeStart", true);
                 }
 
-                ChallengeAmin.SetBool("ButtonPressed", true);
-                TrainingAmin.SetBool("ButtonPressed", true);
-                SettingsAmin.SetBool("ButtonPressed", true);
-                SubMenuAmin.SetBool("ButtonPressed", true);
+                ChallengeAnim.SetBool("ButtonPressed", true);
+                TrainingAnim.SetBool("ButtonPressed", true);
+                SettingsAnim.SetBool("ButtonPressed", true);
+                ToolBarAnim.SetBool("ButtonPressed", true);
+                SubMenuAnim.SetBool("ButtonPressed", true);
                 bIsButtonPressed = false;
             }      
         }
 
-        if (SettingsAmin.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
+        if (SettingsAnim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1)
         {
             bAnimationPlaying = true;
             bCanRunProgress = true;
@@ -67,7 +70,7 @@ public class MainMenu : MonoBehaviour {
             {
                 bAnimationPlaying = false;
                 bCanRunProgress = false;
-                if (SubMenuAmin.GetCurrentAnimatorStateInfo(0).IsName("SubMenu"))
+                if (SubMenuAnim.GetCurrentAnimatorStateInfo(0).IsName("SubMenu"))
                 {
                     SetSubMenuActive();
                 }
@@ -97,7 +100,7 @@ public class MainMenu : MonoBehaviour {
         if (!bAnimationPlaying)
         {
             bIsButtonPressed = true;
-            SubMenuAmin.transform.GetChild(0).transform.gameObject.SetActive(true);
+            SubMenuAnim.transform.GetChild(0).transform.gameObject.SetActive(true);
         }
     }
 
@@ -106,7 +109,7 @@ public class MainMenu : MonoBehaviour {
         if (!bAnimationPlaying)
         {
             bIsButtonPressed = true;
-            SubMenuAmin.transform.GetChild(1).transform.gameObject.SetActive(true);
+            SubMenuAnim.transform.GetChild(1).transform.gameObject.SetActive(true);
         }
     }
 
@@ -115,7 +118,7 @@ public class MainMenu : MonoBehaviour {
         if (!bAnimationPlaying)
         {
             bIsButtonPressed = true;
-            SubMenuAmin.transform.GetChild(2).transform.gameObject.SetActive(true);
+            SubMenuAnim.transform.GetChild(2).transform.gameObject.SetActive(true);
         }
     }
 
@@ -123,10 +126,11 @@ public class MainMenu : MonoBehaviour {
     {
         if (!bAnimationPlaying)
         {
-            ChallengeAmin.SetBool("ButtonPressed", false);
-            TrainingAmin.SetBool("ButtonPressed", false);
-            SettingsAmin.SetBool("ButtonPressed", false);
-            SubMenuAmin.SetBool("ButtonPressed", false);
+            ChallengeAnim.SetBool("ButtonPressed", false);
+            TrainingAnim.SetBool("ButtonPressed", false);
+            SettingsAnim.SetBool("ButtonPressed", false);
+            ToolBarAnim.SetBool("ButtonPressed", false);
+            SubMenuAnim.SetBool("ButtonPressed", false);
         }
     }
 
@@ -141,8 +145,18 @@ public class MainMenu : MonoBehaviour {
 
     private void SetSubMenuActive()
     {
-        SubMenuAmin.transform.GetChild(0).transform.gameObject.SetActive(false);
-        SubMenuAmin.transform.GetChild(1).transform.gameObject.SetActive(false);
-        SubMenuAmin.transform.GetChild(2).transform.gameObject.SetActive(false);
+        SubMenuAnim.transform.GetChild(0).transform.gameObject.SetActive(false);
+        SubMenuAnim.transform.GetChild(1).transform.gameObject.SetActive(false);
+        SubMenuAnim.transform.GetChild(2).transform.gameObject.SetActive(false);
+    }
+
+    public void ShowAchievements()
+    {
+        PlayGameScripts.ShowAchievementsUI();
+    }
+
+    public void ShowLeaderboards()
+    {
+        PlayGameScripts.ShowLeaderboardUI();
     }
 }

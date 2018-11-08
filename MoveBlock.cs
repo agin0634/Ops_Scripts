@@ -97,14 +97,6 @@ public class MoveBlock : MonoBehaviour, IDragHandler, IEndDragHandler
             {
                 NearsetObject.Clear();
             }
-            /*
-            if (Col.tag == "Block_Holder_F")
-            {
-                if (Col.GetComponent<CalculateBlock>().CurrentBlock_F == this.gameObject)
-                {
-                    NearsetObject.Clear();
-                }
-            }*/
         }
         else
         {

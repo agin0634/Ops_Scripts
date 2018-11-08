@@ -98,7 +98,6 @@ public class MainGameManager : MonoBehaviour {
                 // Tutorial Mode
                 if(bIsAllBlockUsed && bIsHitTarget)
                 {
-                    // TODO Win
                     bIsAllBlockUsed = false;
                     bIsHitTarget = false;
                     TimeStop = true;
@@ -185,7 +184,6 @@ public class MainGameManager : MonoBehaviour {
     {
         if(instance.GameMode == 0)
         {
-            // TODO Save
             instance.SaveGame();
             Debug.Log("Save!!!");
         }
