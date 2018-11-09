@@ -74,6 +74,7 @@ public class Timer : MonoBehaviour {
             PlayerPrefs.SetFloat("Best_Time", timer_f);
             win_gui.SwitchWinTitle(true);
             GameManager.bIsNewBest = true;
+            UpdateLeaderBoardScore((long)timer_f * 1000);
         }
         else
         {
@@ -81,7 +82,11 @@ public class Timer : MonoBehaviour {
             win_gui.SwitchWinTitle(false);
             GameManager.bIsNewBest = false;
         }
+    }
 
+    void UpdateLeaderBoardScore(long Score)
+    {
+        PlayGameScripts.AddScoreToLeaderboard(GPGSIds.leaderboard_leaderboard,Score);
     }
 
 }

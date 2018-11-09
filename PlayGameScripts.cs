@@ -46,6 +46,11 @@ public class PlayGameScripts : MonoBehaviour {
         PlayGamesPlatform.Instance.ShowLeaderboardUI();
     }
 
+    public static void AddScoreToLeaderboard(string leaderboardID, long Score)
+    {
+        Social.ReportScore(Score, leaderboardID, success => { });
+    }
+
     #endregion Leaderboards
 
 }
