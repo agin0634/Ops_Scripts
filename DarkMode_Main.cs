@@ -12,6 +12,8 @@ public class DarkMode_Main : MonoBehaviour {
     public GameObject GameLogo;
     public GameObject[] bG;
     public GameObject[] gO;
+    public GameObject[] Icon;
+    public Shadow[] shadows;
     public Text[] Game_text; 
         
     public void DarkOn()
@@ -34,6 +36,16 @@ public class DarkMode_Main : MonoBehaviour {
             bG[k].GetComponent<SpriteRenderer>().color = Dark_Color;
         }
 
+        for (int y = 0; y <= Icon.Length - 1; y++)
+        {
+            Icon[y].GetComponent<Image>().color = Dark_Color;
+        }
+
+        for (int s = 0; s <= shadows.Length - 1; s++)
+        {
+            shadows[s].effectColor = new Color32(77, 77, 77, 130);
+        }
+
     }
 
     public void DarkOff()
@@ -54,6 +66,16 @@ public class DarkMode_Main : MonoBehaviour {
         for (int k = 0; k <= bG.Length - 1; k++)
         {
             bG[k].GetComponent<SpriteRenderer>().color = Bright_Color;
+        }
+
+        for (int y = 0; y <= Icon.Length - 1; y++)
+        {
+            Icon[y].GetComponent<Image>().color = Bright_Color;
+        }
+
+        for (int s = 0; s <= shadows.Length - 1; s++)
+        {
+            shadows[s].effectColor = new Color32(77, 77, 77, 77);
         }
     }
 }
