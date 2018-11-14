@@ -37,6 +37,11 @@ public class PlayGameScripts : MonoBehaviour {
         Social.ShowAchievementsUI();
     }
 
+    public static void IncrementAchievement(string AchievementId, int StepsToIncrement)
+    {
+        PlayGamesPlatform.Instance.IncrementAchievement(AchievementId, StepsToIncrement, success => { });
+    }
+
     #endregion Achievements
 
     #region Leaderboards

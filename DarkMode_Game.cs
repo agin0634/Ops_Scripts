@@ -12,6 +12,8 @@ public class DarkMode_Game : MonoBehaviour {
     public GameObject[] bH;
     public GameObject[] Equal;
     public Image[] Ops_Circle;
+    public GameObject[] Icon;
+    public Shadow[] shadows;
     public Text[] Game_text;
     public Image[] Images;
 
@@ -38,6 +40,15 @@ public class DarkMode_Game : MonoBehaviour {
         {
             Images[m].color = Bright_Color;
         }
+        for (int y = 0; y <= Icon.Length - 1; y++)
+        {
+            Icon[y].GetComponent<Image>().color = Dark_Color;
+        }
+
+        for (int s = 0; s <= shadows.Length - 1; s++)
+        {
+            shadows[s].effectColor = new Color32(77, 77, 77, 130);
+        }
 
     }
 
@@ -63,6 +74,15 @@ public class DarkMode_Game : MonoBehaviour {
         for (int m = 0; m <= Images.Length - 1; m++)
         {
             Images[m].color = Dark_Color;
+        }
+        for (int y = 0; y <= Icon.Length - 1; y++)
+        {
+            Icon[y].GetComponent<Image>().color = Bright_Color;
+        }
+
+        for (int s = 0; s <= shadows.Length - 1; s++)
+        {
+            shadows[s].effectColor = new Color32(77, 77, 77, 77);
         }
     }
 }

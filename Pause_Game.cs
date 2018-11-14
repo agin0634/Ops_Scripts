@@ -128,6 +128,16 @@ public class Pause_Game : MonoBehaviour {
         Pause_UI.gameObject.SetActive(true);
     }
 
+    public void AchievementUI()
+    {
+        PlayGameScripts.ShowAchievementsUI();
+    }
+
+    public void LeaderboardUI()
+    {
+        PlayGameScripts.ShowLeaderboardUI();
+    }
+
     void OnApplicationPause(bool pauseStatus)
     {
         bIsPaused = true;
